@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intentions de vote 2027 · rapport Power BI</title>
+<meta name="description" content="Rapport Power BI sur les intentions de vote à l'élection présidentielle de 2027, construit sur l'enquête Ipsos bva et CESI pour Le Parisien de juin 2026.">
+<style>
+  :root{
+    --encre:#0E1E33; --encre-doux:#4A5768; --sourdine:#8A94A3;
+    --papier:#F2F1EC; --filet:#E3E0D7; --or:#B08A26; --fond:#16202C;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fond);color:#E9E6DE;
+       font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.6}
+  .large{max-width:1180px;margin:0 auto;padding:0 20px}
+  header{padding:72px 0 44px;border-bottom:1px solid #2B3543}
+  .marque{font:600 12px/1 "Segoe UI",Arial;letter-spacing:.16em;text-transform:uppercase;
+          color:var(--or);margin-bottom:18px}
+  h1{font:400 clamp(28px,4.4vw,46px)/1.15 Georgia,"Times New Roman",serif;color:#F7F5EF;margin:0 0 16px}
+  .chapeau{font-size:17px;color:#AEB6C0;max-width:820px;margin:0 0 26px}
+  .liens a{display:inline-block;margin:0 14px 10px 0;padding:9px 18px;border:1px solid #3A4554;
+           border-radius:999px;color:#E9E6DE;text-decoration:none;font-size:14px}
+  .liens a:hover{border-color:var(--or);color:#F7F5EF}
+  .liens a.fort{background:var(--or);border-color:var(--or);color:#14202E;font-weight:600}
+  .chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;
+            padding:44px 0 8px}
+  .chiffre{border:1px solid #2B3543;border-radius:10px;padding:20px 22px;background:#1B2533}
+  .chiffre b{display:block;font:300 34px/1.1 "Segoe UI Light","Segoe UI",Arial;color:#F7F5EF;margin-bottom:6px}
+  .chiffre span{font-size:13px;color:#96A0AC}
+  section{padding:42px 0}
+  h2{font:400 26px/1.2 Georgia,serif;color:#F7F5EF;margin:0 0 10px}
+  h2 .num{color:var(--or);font-size:15px;letter-spacing:.1em;display:block;margin-bottom:8px;
+          font-family:"Segoe UI",Arial;font-weight:600}
+  .legende{color:#9BA5B1;font-size:15px;max-width:860px;margin:0 0 22px}
+  figure{margin:0 0 10px}
+  img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid #2B3543;
+      background:var(--papier)}
+  .deux{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+  .carte{border:1px solid #2B3543;border-radius:10px;padding:22px 24px;background:#1B2533}
+  .carte h3{font:400 19px/1.3 Georgia,serif;color:#F7F5EF;margin:0 0 10px}
+  .carte p{margin:0 0 10px;font-size:14.5px;color:#A9B2BD}
+  .carte a{color:var(--or)}
+  ul{padding-left:20px;color:#A9B2BD;font-size:15px}
+  li{margin-bottom:8px}
+  footer{border-top:1px solid #2B3543;padding:34px 0 60px;color:#7E8895;font-size:13.5px}
+  footer a{color:var(--or)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="large">
+    <div class="marque">Ipsos bva · CESI · Le Parisien · juin 2026</div>
+    <h1>Intentions de vote à l'élection présidentielle de 2027</h1>
+    <p class="chapeau">L'enquête ne mesure pas une intention de vote, elle en mesure huit.
+    Ce rapport Power BI répond à une seule question : qu'est-ce qui reste vrai quelle que
+    soit l'hypothèse testée, et qu'est-ce qui ne dépend que de la configuration d'offre ?</p>
+    <div class="liens">
+      <a class="fort" href="rapport-presidentielle-2027.pdf">Télécharger le rapport en PDF</a>
+      <a href="https://github.com/abdoulhamiddiallo/presidentielle-2027-powerbi">Le projet sur GitHub</a>
+      <a href="https://github.com/abdoulhamiddiallo/presidentielle-2027-powerbi/blob/main/docs/modele-de-donnees.md">Le modèle de données</a>
+    </div>
+    <div class="chiffres">
+      <div class="chiffre"><b>8</b><span>hypothèses d'offre testées</span></div>
+      <div class="chiffre"><b>13</b><span>personnalités</span></div>
+      <div class="chiffre"><b>84</b><span>scores publiés</span></div>
+      <div class="chiffre"><b>16,5</b><span>points d'avance minimale du premier</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="large">
+  <h2><span class="num">01 · LE CONSTAT</span>Dans les huit hypothèses testées, le Rassemblement national arrive en tête</h2>
+  <p class="legende">Le classement moyen des treize personnalités, le poids des cinq blocs
+  politiques et les quatre indicateurs de cadrage. L'avance du premier sur le deuxième ne
+  descend jamais sous 16,5 points, soit près de trois fois la somme des deux marges d'erreur.</p>
+  <figure><img src="images/page-01-le-constat.png" alt="Page 01 du rapport : le classement moyen des treize personnalités testées et le poids des cinq blocs politiques."></figure>
+</section>
+
+<section class="large">
+  <h2><span class="num">02 · LA STABILITÉ DU CLASSEMENT</span>La tête ne bouge jamais, tout le reste se recompose</h2>
+  <p class="legende">Les neuf personnalités qui dépassent 5 % dans au moins une hypothèse,
+  confrontées hypothèse par hypothèse, et les quatre-vingt-quatre scores publiés. Une cellule
+  vide signale un candidat absent de l'hypothèse, pas un score nul.</p>
+  <figure><img src="images/page-02-la-stabilite.png" alt="Page 02 du rapport : les scores des neuf principales personnalités dans les huit hypothèses, et la matrice des quatre-vingt-quatre scores publiés."></figure>
+</section>
+
+<section class="large">
+  <h2><span class="num">03 · L'EFFET DE L'OFFRE</span>Ce qui fait varier les scores, c'est l'offre, pas l'électorat</h2>
+  <p class="legende">Retirer une des deux personnalités du bloc central déplace jusqu'à neuf
+  points, alors que le socle du Rassemblement national ne varie que de 2,5. Le nuage de points
+  sépare les scores élevés des scores solides.</p>
+  <figure><img src="images/page-03-l-effet-de-l-offre.png" alt="Page 03 du rapport : graphique de pente entre les configurations à quatre et à trois grands candidats, nuage de points score contre amplitude, et effet de l'offre resserrée."></figure>
+</section>
+
+<section class="large">
+  <h2><span class="num">04 · LES PROFILS</span>Aucune personnalité du bloc central ne résiste au changement d'offre</h2>
+  <p class="legende">Page pilotée par la sélection d'un candidat : son niveau hypothèse par
+  hypothèse, ses écarts à sa propre moyenne et son intervalle de confiance à 95 %. Sans
+  sélection, la page montre le candidat arrivé en tête.</p>
+  <figure><img src="images/page-04-les-profils.png" alt="Page 04 du rapport : profil détaillé d'un candidat, score par hypothèse, écarts à sa moyenne et intervalle de confiance."></figure>
+</section>
+
+<section class="large">
+  <h2><span class="num">05 · LES CONCLUSIONS</span>Ce que cette enquête établit, et ce qu'elle ne dit pas</h2>
+  <p class="legende">Trois constats qui tiennent la marge d'erreur, quatre questions hors du
+  champ de l'enquête, et l'écart de tête hypothèse par hypothèse.</p>
+  <figure><img src="images/page-05-les-conclusions.png" alt="Page 05 du rapport : ce que l'enquête établit, ce qu'elle ne dit pas, et le tableau de l'écart de tête par hypothèse."></figure>
+</section>
+
+<section class="large">
+  <h2><span class="num">06 · LA MÉTHODE</span>Une enquête par quotas, à lire avec ses marges d'erreur</h2>
+  <p class="legende">Fiche technique complète, base et non-réponse par hypothèse, contenu de
+  chaque hypothèse, et lecture de l'intervalle de confiance. La marge croît avec le score
+  mesuré et s'élargit quand la base diminue.</p>
+  <figure><img src="images/page-06-la-methode.png" alt="Page 06 du rapport : fiche méthodologique, base et non-réponse par hypothèse, et nuage de points de la marge d'erreur en fonction du score."></figure>
+</section>
+
+<section class="large">
+  <h2>Sous le capot</h2>
+  <div class="deux">
+    <div class="carte">
+      <h3>Un projet généré, pas dessiné</h3>
+      <p>Les sept pages, les soixante-sept visuels, le modèle sémantique et les fichiers CSV
+      sont produits par cinq modules Python. Une correction se fait dans le code, puis on
+      régénère.</p>
+      <p><a href="https://github.com/abdoulhamiddiallo/presidentielle-2027-powerbi/blob/main/docs/choix-de-conception.md">Les choix de conception et les pièges rencontrés</a></p>
+    </div>
+    <div class="carte">
+      <h3>Un schéma en étoile, quarante et une mesures</h3>
+      <p>Une table de faits de quatre-vingt-quatre lignes, deux dimensions, une table de
+      mesures sans données. La mesure fondatrice moyenne les scores sur les hypothèses du
+      contexte au lieu de les additionner.</p>
+      <p><a href="https://github.com/abdoulhamiddiallo/presidentielle-2027-powerbi/blob/main/docs/mesures-dax.md">Les mesures DAX, une par une</a></p>
+    </div>
+    <div class="carte">
+      <h3>Des données publiées, pas simulées</h3>
+      <p>Les quatre-vingt-quatre scores, les marges d'erreur, les bases et les taux de
+      non-réponse proviennent du rapport public de l'enquête, saisis à l'identique. Un
+      contrôle vérifie que chaque hypothèse totalise 100 %.</p>
+    </div>
+  </div>
+</section>
+
+<section class="large">
+  <h2>À lire avec précaution</h2>
+  <ul>
+    <li>Jordan Bardella et Marine Le Pen ne sont jamais testés dans la même hypothèse.
+    L'écart entre leurs moyennes ne mesure pas une préférence, il compare deux jeux de
+    questions distincts.</li>
+    <li>Un écart inférieur à la somme des marges d'erreur des deux candidats comparés n'est
+    pas significatif.</li>
+    <li>Une intention de vote mesurée en mai 2026 décrit un rapport de force à cette date,
+    pas un résultat à onze mois de l'échéance.</li>
+  </ul>
+</section>
+
+<footer class="large">
+  <p>Source des données : enquête Ipsos bva et CESI école d'ingénieurs pour Le Parisien,
+  terrain des 27 et 28 mai 2026, 1 500 personnes inscrites sur les listes électorales,
+  méthode des quotas, rapport publié en juin 2026. Les droits sur les données appartiennent
+  à leurs auteurs.</p>
+  <p>Le code du générateur et la définition du rapport sont publiés sous licence MIT.
+  <a href="https://github.com/abdoulhamiddiallo/presidentielle-2027-powerbi">Voir le dépôt</a></p>
+</footer>
+
+</body>
+</html>

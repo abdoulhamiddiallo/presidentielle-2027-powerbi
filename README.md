@@ -8,6 +8,11 @@ Python qui produit l'ensemble.
 Les libellés du rapport sont en français : noms de pages, titres de visuels,
 en-têtes de colonnes et libellés d'axes. Cette documentation suit la même langue.
 
+**[Voir les six pages en ligne](https://abdoulhamiddiallo.github.io/presidentielle-2027-powerbi/)**
+· [Télécharger le rapport en PDF](docs/rapport-presidentielle-2027.pdf)
+
+![Page 01 du rapport : le classement moyen des treize personnalités testées et le poids des cinq blocs politiques](docs/images/page-01-le-constat.png)
+
 ---
 
 ## 1. Ce que fait le rapport
@@ -58,7 +63,7 @@ Quatre indicateurs de cadrage (candidat en tête, meilleur score mesuré, total
 extrême droite, avance minimale sur le deuxième), le classement moyen des treize
 personnalités testées en barres horizontales aux couleurs des partis, le poids
 des cinq blocs politiques classés du plus lourd au plus léger, et trois points de
-lecture.
+lecture. La capture figure en tête de ce fichier.
 
 ### 02 · La stabilité du classement
 
@@ -68,6 +73,8 @@ Un graphique à colonnes groupées confronte les neuf personnalités qui dépass
 5 % dans au moins une hypothèse, hypothèse par hypothèse. Une matrice affiche
 les quatre-vingt-quatre scores publiés, avec mise en forme conditionnelle par
 intensité : une cellule vide signale un candidat absent de l'hypothèse.
+
+![Page 02 : les scores des neuf principales personnalités dans les huit hypothèses, et la matrice des quatre-vingt-quatre scores publiés](docs/images/page-02-la-stabilite.png)
 
 ### 03 · L'effet de l'offre
 
@@ -79,6 +86,8 @@ ce qui sépare les scores élevés des scores solides. Un graphique à colonnes
 mesure l'effet de l'offre resserrée candidat par candidat. Un tableau récapitule
 niveau, dispersion et nombre de premières places.
 
+![Page 03 : graphique de pente entre les configurations à quatre et à trois grands candidats, nuage de points et effet de l'offre resserrée](docs/images/page-03-l-effet-de-l-offre.png)
+
 ### 04 · Les profils
 
 *Aucune personnalité du bloc central ne résiste au changement d'offre.*
@@ -89,6 +98,8 @@ hypothèse, ses écarts à sa propre moyenne, et son intervalle de confiance à 
 détaillé. Toutes les mesures de cette page retombent sur Jordan Bardella quand
 aucune sélection n'est active, afin que la page ne soit jamais vide.
 
+![Page 04 : profil détaillé d'un candidat, score par hypothèse, écarts à sa moyenne et intervalle de confiance](docs/images/page-04-les-profils.png)
+
 ### 05 · Les conclusions
 
 *Ce que cette enquête établit, et ce qu'elle ne dit pas.*
@@ -97,6 +108,8 @@ Trois constats qui tiennent la marge d'erreur, quatre questions hors du champ de
 l'enquête, trois questions ouvertes pour la suite, et un tableau de l'écart de
 tête hypothèse par hypothèse.
 
+![Page 05 : ce que l'enquête établit, ce qu'elle ne dit pas, et l'écart de tête par hypothèse](docs/images/page-05-les-conclusions.png)
+
 ### 06 · La méthode
 
 *Une enquête par quotas, à lire avec ses marges d'erreur.*
@@ -104,6 +117,8 @@ tête hypothèse par hypothèse.
 Fiche technique complète, base et non-réponse par hypothèse, contenu de chaque
 hypothèse, explication de l'intervalle de confiance et nuage de points de la
 marge d'erreur en fonction du score.
+
+![Page 06 : fiche méthodologique, base et non-réponse par hypothèse, et marge d'erreur en fonction du score](docs/images/page-06-la-methode.png)
 
 ### Info-bulle · profil candidat
 
@@ -306,6 +321,9 @@ presidentielle-2027-powerbi/
 ├── .markdownlint.json                       règles de mise en forme de la documentation
 ├── .github/workflows/controles.yml          régénération et contrôles automatiques
 ├── docs/
+│   ├── index.html                page publiée, les six pages en images
+│   ├── images/                   une capture par page du rapport
+│   ├── rapport-presidentielle-2027.pdf   export des six pages
 │   ├── modele-de-donnees.md      tables, colonnes, relations, tri et couleurs
 │   ├── mesures-dax.md            les 41 mesures, code et rôle
 │   ├── pages-du-rapport.md       inventaire visuel par visuel
