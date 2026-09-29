@@ -1,0 +1,55 @@
+name: Contrôles du projet
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  generation:
+    name: Régénérer le projet et vérifier les données
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Vérifier que chaque hypothèse totalise 100 %
+        working-directory: Presidentielle 2027 - Generateur
+        run: python pdata.py
+
+      - name: Régénérer le projet Power BI
+        working-directory: Presidentielle 2027 - Generateur
+        run: >
+          python pbuild.py "${{ runner.temp }}/sortie"
+          "../Presidentielle 2027.Report/StaticResources/SharedResources/BaseThemes/CY26SU07.json"
+
+      - name: Vérifier que les fichiers attendus sont bien écrits
+        run: |
+          set -e
+          racine="${{ runner.temp }}/sortie"
+          test -f "$racine/Presidentielle 2027.pbip"
+          test -f "$racine/Presidentielle 2027.SemanticModel/definition/model.tmdl"
+          test -f "$racine/Presidentielle 2027.SemanticModel/definition/expressions.tmdl"
+          test -f "$racine/Presidentielle 2027.Report/definition/pages/pages.json"
+          pages=$(ls -d "$racine/Presidentielle 2027.Report/definition/pages"/*/ | wc -l)
+          if [ "$pages" -ne 7 ]; then
+            echo "Nombre de pages inattendu : $pages au lieu de 7"
+            exit 1
+          fi
+
+      - name: Vérifier l'absence de tiret cadratin
+        run: |
+          set -e
+          cadratin=$(printf '\342\200\224')
+          if grep -rlF --exclude-dir=.git -- "$cadratin" . ; then
+            echo "Un tiret cadratin subsiste dans les fichiers listés ci-dessus."
+            exit 1
+          fi
+          echo "Aucun tiret cadratin dans le dépôt."

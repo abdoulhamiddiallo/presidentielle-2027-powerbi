@@ -1,0 +1,14 @@
+﻿Candidat;NomCourt;Parti;Bloc;OrdreBloc;Ordre;Couleur;CouleurBloc
+Nathalie Arthaud;Arthaud;Lutte ouvrière;Gauche radicale;1;1;#9E2B22;#B33A2E
+Jean-Luc Mélenchon;Mélenchon;La France insoumise;Gauche radicale;1;2;#CC2936;#B33A2E
+Fabien Roussel;Roussel;Parti communiste;Gauche radicale;1;3;#D9694F;#B33A2E
+Marine Tondelier;Tondelier;Les Écologistes;Gauche et écologistes;2;4;#2E7D32;#D4577E
+Raphaël Glucksmann;Glucksmann;Place publique;Gauche et écologistes;2;5;#E8637C;#D4577E
+François Hollande;Hollande;Parti socialiste;Gauche et écologistes;2;6;#C25E7A;#D4577E
+Gabriel Attal;Attal;Renaissance;Centre;3;7;#D98B1F;#D98B1F
+Édouard Philippe;Philippe;Horizons;Centre;3;8;#0E7C6B;#D98B1F
+Bruno Retailleau;Retailleau;Les Républicains;Droite;4;9;#3E93D6;#3E93D6
+Nicolas Dupont-Aignan;Dupont-Aignan;Debout la France;Droite;4;10;#6FB0DE;#3E93D6
+Jordan Bardella;Bardella;Rassemblement national;Extrême droite;5;11;#35529A;#35529A
+Marine Le Pen;Le Pen;Rassemblement national;Extrême droite;5;12;#4463B0;#35529A
+Éric Zemmour;Zemmour;Reconquête;Extrême droite;5;13;#8C4A1E;#35529A

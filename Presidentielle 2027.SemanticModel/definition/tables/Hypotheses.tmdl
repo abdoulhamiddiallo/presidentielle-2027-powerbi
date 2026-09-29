@@ -1,0 +1,124 @@
+/// Les 8 hypothèses de premier tour testées dans l'enquête. Chaque hypothèse
+/// a sa propre base de répondants (personnes certaines d'aller voter et ayant
+/// exprimé une intention) et son propre taux de non-réponse.
+table Hypotheses
+	lineageTag: 8f94151c-2749-4863-a5fe-3647bda035ba
+
+	/// Identifiant court de l'hypothèse (H1 à H8).
+	column Code
+		dataType: string
+		lineageTag: 8b5159db-9df9-4ed7-b49b-88da083db737
+		summarizeBy: none
+		sortByColumn: Ordre
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = User
+
+	/// Libellé court : les grands candidats de l'hypothèse.
+	column Hypothese
+		dataType: string
+		lineageTag: d296ff3d-7625-4a0f-9afa-29735db7cfa2
+		summarizeBy: none
+		sortByColumn: Ordre
+		sourceColumn: Hypothese
+
+		annotation SummarizationSetBy = User
+
+	/// Intitulé complet tel qu'imprimé dans le rapport Ipsos.
+	column Intitule
+		dataType: string
+		lineageTag: 53af9ef9-c42c-499c-b686-d0b4fb8934b1
+		summarizeBy: none
+		sourceColumn: Intitule
+
+		annotation SummarizationSetBy = User
+
+	/// Nombre de personnes exprimant une intention de vote.
+	column Base
+		dataType: int64
+		formatString: #,0
+		lineageTag: d4240b8e-dd5a-4665-bdc8-6639f71dec84
+		summarizeBy: none
+		sourceColumn: Base
+
+		annotation SummarizationSetBy = User
+
+	/// Part (%) des personnes certaines d'aller voter sans intention exprimée.
+	column SansReponse
+		dataType: double
+		formatString: 0.0
+		lineageTag: 3014f723-3130-4a5a-a37c-4a84d6e146ea
+		summarizeBy: none
+		sourceColumn: SansReponse
+
+		annotation SummarizationSetBy = User
+
+	/// Nombre de candidats présents dans l'hypothèse.
+	column NbCandidats
+		dataType: int64
+		formatString: 0
+		lineageTag: a4471a15-5ff0-4f28-89ad-889401128e8a
+		summarizeBy: none
+		sourceColumn: NbCandidats
+
+		annotation SummarizationSetBy = User
+
+	/// Candidat du Rassemblement national testé.
+	column FinalisteRN
+		dataType: string
+		lineageTag: e2606a96-d1d4-4bf5-8494-a4511adb77da
+		summarizeBy: none
+		sourceColumn: FinalisteRN
+
+		annotation SummarizationSetBy = User
+
+	/// Candidat social-démocrate testé.
+	column CandidatGauche
+		dataType: string
+		lineageTag: 0ff29126-3e44-47ea-8261-6c1e13c54dbc
+		summarizeBy: none
+		sourceColumn: CandidatGauche
+
+		annotation SummarizationSetBy = User
+
+	/// Configuration d'offre : quatre ou trois grands candidats face au RN.
+	column Configuration
+		dataType: string
+		lineageTag: da43c1c8-5d4d-4432-9f7c-e6ea3aead890
+		summarizeBy: none
+		sortByColumn: OrdreConfig
+		sourceColumn: Configuration
+
+		annotation SummarizationSetBy = User
+
+	column OrdreConfig
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a3852201-d894-470c-a119-9f92951bf5ed
+		summarizeBy: none
+		sourceColumn: OrdreConfig
+
+		annotation SummarizationSetBy = User
+
+	column Ordre
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5ac4de7d-d5cf-4972-8d8c-97dcc9aff3d9
+		summarizeBy: none
+		sourceColumn: Ordre
+
+		annotation SummarizationSetBy = User
+
+	partition Hypotheses = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CheminDonnees & "Hypotheses.csv"), [Delimiter=";", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Entetes = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Types = Table.TransformColumnTypes(Entetes, {{"Code", type text}, {"Hypothese", type text}, {"Intitule", type text}, {"Base", Int64.Type}, {"SansReponse", type number}, {"NbCandidats", Int64.Type}, {"FinalisteRN", type text}, {"CandidatGauche", type text}, {"Configuration", type text}, {"OrdreConfig", Int64.Type}, {"Ordre", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

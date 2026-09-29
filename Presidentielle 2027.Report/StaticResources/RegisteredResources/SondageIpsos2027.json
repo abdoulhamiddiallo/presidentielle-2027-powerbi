@@ -1,0 +1,84 @@
+{
+  "name": "SondageIpsos2027",
+  "dataColors": [
+    "#CC2936",
+    "#2E7D32",
+    "#E8637C",
+    "#C25E7A",
+    "#D98B1F",
+    "#0E7C6B",
+    "#3E93D6",
+    "#35529A",
+    "#4463B0",
+    "#9E2B22",
+    "#D9694F",
+    "#6FB0DE",
+    "#8C4A1E",
+    "#16324F",
+    "#4A5768",
+    "#8A94A3",
+    "#B08A26"
+  ],
+  "foreground": "#0E1E33",
+  "foregroundNeutralSecondary": "#4A5768",
+  "foregroundNeutralTertiary": "#8A94A3",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F2F1EC",
+  "backgroundNeutral": "#EDEAE2",
+  "tableAccent": "#B08A26",
+  "good": "#2E7D32",
+  "bad": "#8C1D18",
+  "neutral": "#B08A26",
+  "maximum": "#0E1E33",
+  "center": "#7C8B9E",
+  "minimum": "#DDE4EC",
+  "hyperlink": "#1F6FB2",
+  "textClasses": {
+    "title": {
+      "fontFace": "Georgia",
+      "fontSize": 13,
+      "color": "#0E1E33"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#0E1E33"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#4A5768"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Light",
+      "fontSize": 26,
+      "color": "#0E1E33"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

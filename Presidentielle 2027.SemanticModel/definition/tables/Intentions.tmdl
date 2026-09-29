@@ -1,0 +1,56 @@
+/// Table de faits : un enregistrement par couple (hypothèse, candidat).
+/// 84 lignes issues des pages 6 à 13 du rapport Ipsos.
+table Intentions
+	lineageTag: f25b4bfa-43aa-4973-9d41-1a58d29cc2ce
+
+	column Code
+		dataType: string
+		isHidden
+		lineageTag: 317fea8a-8144-48d8-80b6-b0c152026986
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = User
+
+	column Candidat
+		dataType: string
+		isHidden
+		lineageTag: 71c2b62f-80aa-4f6a-889c-7b3b06ca89ef
+		summarizeBy: none
+		sourceColumn: Candidat
+
+		annotation SummarizationSetBy = User
+
+	/// Intention de vote en % des suffrages exprimés.
+	column Score
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: a00ed4b9-485b-4298-9f4b-03b61f3a0370
+		summarizeBy: none
+		sourceColumn: Score
+
+		annotation SummarizationSetBy = User
+
+	/// Demi-amplitude de l'intervalle de confiance à 95 %, en points.
+	column Marge
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 02c1475c-79cb-4107-9877-ef902174b4ef
+		summarizeBy: none
+		sourceColumn: Marge
+
+		annotation SummarizationSetBy = User
+
+	partition Intentions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CheminDonnees & "Intentions.csv"), [Delimiter=";", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Entetes = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Types = Table.TransformColumnTypes(Entetes, {{"Code", type text}, {"Candidat", type text}, {"Score", type number}, {"Marge", type number}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

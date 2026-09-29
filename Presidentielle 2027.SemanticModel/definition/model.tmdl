@@ -1,0 +1,20 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["CheminDonnees","Candidats","Hypotheses","Intentions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref expression CheminDonnees
+
+ref table Candidats
+ref table Hypotheses
+ref table Intentions
+ref table Mesures
+
+ref cultureInfo fr-FR

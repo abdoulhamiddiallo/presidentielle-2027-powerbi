@@ -1,0 +1,7 @@
+relationship 821cbc05-42d1-4ca7-87d1-b9b19ca9950d
+	fromColumn: Intentions.Candidat
+	toColumn: Candidats.Candidat
+
+relationship 781ab5e9-5e00-49b9-8ee9-7b9d316275e1
+	fromColumn: Intentions.Code
+	toColumn: Hypotheses.Code

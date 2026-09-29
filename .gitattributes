@@ -1,0 +1,6 @@
+# Normalisation des fins de ligne dans le dépôt.
+* text=auto eol=lf
+
+# Les fichiers CSV sont écrits par le générateur avec des fins de ligne
+# Windows : on les laisse tels quels.
+*.csv -text

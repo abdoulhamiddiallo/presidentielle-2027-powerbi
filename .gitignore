@@ -1,0 +1,24 @@
+# Fichiers locaux de Power BI Desktop
+*.pbix
+*.pbit
+.pbi/localSettings.json
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/*.cache
+
+# Rebut laissé par une régénération du projet
+_rebut*/
+
+# Aperçu HTML produit par preview.py
+apercu*.html
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Systèmes de fichiers
+Thumbs.db
+desktop.ini
+.DS_Store

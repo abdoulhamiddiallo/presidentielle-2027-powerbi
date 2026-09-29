@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Presidentielle 2027"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "018c66bc-7cc4-44cd-8c19-6a18cd63c61e"
+  }
+}
