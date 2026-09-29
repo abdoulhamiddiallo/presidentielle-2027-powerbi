@@ -1,12 +1,12 @@
 /// Référentiel des 13 personnalités testées : parti, bloc politique et
 /// ordre de présentation retenu par Ipsos (de la gauche vers la droite).
 table Candidats
-	lineageTag: 703b5330-91b8-424b-b063-10d66c9bb949
+	lineageTag: 9a67dae1-f9bc-4c91-9a7d-165c93657eee
 
 	/// Nom de la personnalité testée.
 	column Candidat
 		dataType: string
-		lineageTag: 3af7bf1c-b895-4b72-a173-299721b6dafc
+		lineageTag: fe06ca38-d703-4956-9905-7ecab2ff1d72
 		summarizeBy: none
 		sortByColumn: Ordre
 		sourceColumn: Candidat
@@ -14,9 +14,9 @@ table Candidats
 		annotation SummarizationSetBy = User
 
 	/// Nom de famille seul, pour les axes de graphiques étroits.
-	column NomCourt
+	column 'Nom court'
 		dataType: string
-		lineageTag: 7094eb01-b3c4-47d4-94ce-65414f08c05d
+		lineageTag: 1e49f8c5-2383-4113-8643-704d8d43ac60
 		summarizeBy: none
 		sortByColumn: Ordre
 		sourceColumn: NomCourt
@@ -26,7 +26,7 @@ table Candidats
 	/// Formation politique de rattachement.
 	column Parti
 		dataType: string
-		lineageTag: c442ae92-ee71-454e-a570-7a19c065ae0a
+		lineageTag: dee84c6a-8fdc-4b6a-8ea7-57aab82aba68
 		summarizeBy: none
 		sourceColumn: Parti
 
@@ -35,7 +35,7 @@ table Candidats
 	/// Regroupement analytique en cinq blocs politiques.
 	column Bloc
 		dataType: string
-		lineageTag: cc7f7324-7f59-4a71-9dd5-1b872720204d
+		lineageTag: ebb894e4-67e9-4504-aa58-08dcb5af0146
 		summarizeBy: none
 		sortByColumn: OrdreBloc
 		sourceColumn: Bloc
@@ -46,7 +46,7 @@ table Candidats
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: beb1e3c2-f509-4dce-b942-477f0d108ed7
+		lineageTag: 1bb7836e-f584-42b5-9d87-1d93d584f952
 		summarizeBy: none
 		sourceColumn: OrdreBloc
 
@@ -56,7 +56,7 @@ table Candidats
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 547b2ba1-c7ef-46b2-912c-abe9881a4ff6
+		lineageTag: aa166819-fefb-4756-8043-05a87ce62c8d
 		summarizeBy: none
 		sourceColumn: Ordre
 
@@ -66,7 +66,7 @@ table Candidats
 	column Couleur
 		dataType: string
 		isHidden
-		lineageTag: 7e41ec36-f853-4935-aea0-0c7a522f5c8d
+		lineageTag: 2ce33afc-f118-403e-9dfe-2e45ab8a45e1
 		summarizeBy: none
 		sourceColumn: Couleur
 
@@ -76,7 +76,7 @@ table Candidats
 	column CouleurBloc
 		dataType: string
 		isHidden
-		lineageTag: 82d13790-7ff6-42ba-96a4-ea357647d463
+		lineageTag: 43747e78-1380-4cb2-8036-5b769b4bb0b5
 		summarizeBy: none
 		sourceColumn: CouleurBloc
 

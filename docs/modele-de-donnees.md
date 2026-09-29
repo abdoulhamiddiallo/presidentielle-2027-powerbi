@@ -29,7 +29,7 @@ Référentiel des treize personnalités testées. Une ligne par personnalité.
 | Colonne | Type | Visible | Tri | Rôle |
 |---|---|---|---|---|
 | `Candidat` | texte | oui | par `Ordre` | Nom complet, clé de la relation |
-| `NomCourt` | texte | oui | par `Ordre` | Nom de famille seul, pour les axes étroits |
+| `Nom court` | texte | oui | par `Ordre` | Nom de famille seul, pour les axes étroits |
 | `Parti` | texte | oui | naturel | Formation politique de rattachement |
 | `Bloc` | texte | oui | par `OrdreBloc` | Regroupement en cinq blocs |
 | `OrdreBloc` | entier | non | naturel | Rang du bloc, de la gauche vers la droite |
@@ -39,6 +39,11 @@ Référentiel des treize personnalités testées. Une ligne par personnalité.
 
 Les cinq blocs sont : gauche radicale, gauche et écologistes, centre, droite,
 extrême droite.
+
+Les noms de colonnes portent leurs accents et leurs espaces : ce sont eux que le
+lecteur voit en en-tête de tableau, et une colonne nommée `SansReponse` dans un
+rapport français est un défaut. Le nom technique du fichier CSV reste inchangé,
+la correspondance se fait par `sourceColumn` dans le fichier TMDL.
 
 Le tri par `Ordre` est un choix de fond. Un axe alphabétique placerait Arthaud
 avant Zemmour et détruirait la lecture politique. L'ordre retenu reproduit celui
@@ -58,13 +63,13 @@ Les huit configurations d'offre testées. Une ligne par hypothèse.
 | Colonne | Type | Visible | Tri | Rôle |
 |---|---|---|---|---|
 | `Code` | texte | oui | par `Ordre` | Identifiant court, H1 à H8, clé de la relation |
-| `Hypothese` | texte | oui | par `Ordre` | Libellé court listant les grands candidats |
-| `Intitule` | texte | oui | naturel | Intitulé complet tel qu'imprimé dans le rapport |
-| `Base` | entier | oui | naturel | Nombre de personnes exprimant une intention |
-| `SansReponse` | décimal | oui | naturel | Part des certains d'aller voter sans intention exprimée |
-| `NbCandidats` | entier | oui | naturel | Nombre de candidats présents dans l'hypothèse |
-| `FinalisteRN` | texte | oui | naturel | Candidat du Rassemblement national testé |
-| `CandidatGauche` | texte | oui | naturel | Candidat social-démocrate testé |
+| `Hypothèse` | texte | oui | par `Ordre` | Libellé court listant les grands candidats |
+| `Intitulé` | texte | oui | naturel | Intitulé complet tel qu'imprimé dans le rapport |
+| `Base exprimée` | entier | oui | naturel | Nombre de personnes exprimant une intention |
+| `Sans réponse (%)` | décimal | oui | naturel | Part des certains d'aller voter sans intention exprimée |
+| `Nb candidats` | entier | oui | naturel | Nombre de candidats présents dans l'hypothèse |
+| `Finaliste RN` | texte | oui | naturel | Candidat du Rassemblement national testé |
+| `Candidat de gauche` | texte | oui | naturel | Candidat social-démocrate testé |
 | `Configuration` | texte | oui | par `OrdreConfig` | Quatre ou trois grands candidats face au RN |
 | `OrdreConfig` | entier | non | naturel | Rang de la configuration |
 | `Ordre` | entier | non | naturel | Rang de l'hypothèse, H1 à H8 |
@@ -73,7 +78,7 @@ Les huit configurations d'offre testées. Une ligne par hypothèse.
 oppose les quatre hypothèses où Attal et Philippe sont présents ensemble aux
 quatre hypothèses où une seule des deux personnalités reste en lice.
 
-`Base` et `SansReponse` alimentent la page 06. Elles rappellent que la base
+`Base exprimée` et `Sans réponse (%)` alimentent la page 06. Elles rappellent que la base
 exprimée varie de 1 037 à 1 079 personnes et que la part sans intention exprimée
 monte de 7 à 11 % quand l'offre se resserre.
 

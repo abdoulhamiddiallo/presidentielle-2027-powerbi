@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "a6533e5ce3e047d99386",
+  "name": "c133c2db563a6357d817",
   "position": {
-    "x": 40,
-    "y": 412,
-    "z": 34,
-    "width": 596,
-    "height": 272,
-    "tabOrder": 34
+    "x": 652,
+    "y": 376,
+    "z": 36,
+    "width": 588,
+    "height": 308,
+    "tabOrder": 36
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -23,17 +23,12 @@
                       "Entity": "Candidats"
                     }
                   },
-                  "Property": "NomCourt"
+                  "Property": "Candidat"
                 }
               },
-              "queryRef": "Candidats.NomCourt",
-              "nativeQueryRef": "NomCourt",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+              "queryRef": "Candidats.Candidat",
+              "nativeQueryRef": "Candidat"
+            },
             {
               "field": {
                 "Measure": {
@@ -42,11 +37,39 @@
                       "Entity": "Mesures"
                     }
                   },
-                  "Property": "Effet de l’offre resserrée (pts)"
+                  "Property": "Score (%)"
                 }
               },
-              "queryRef": "Mesures.Effet de l’offre resserrée (pts)",
-              "nativeQueryRef": "Effet de l’offre resserrée (pts)"
+              "queryRef": "Mesures.Score (%)",
+              "nativeQueryRef": "Score (%)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mesures"
+                    }
+                  },
+                  "Property": "Amplitude (pts)"
+                }
+              },
+              "queryRef": "Mesures.Amplitude (pts)",
+              "nativeQueryRef": "Amplitude (pts)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mesures"
+                    }
+                  },
+                  "Property": "Hypothèses en tête"
+                }
+              },
+              "queryRef": "Mesures.Hypothèses en tête",
+              "nativeQueryRef": "Hypothèses en tête"
             }
           ]
         }
@@ -61,7 +84,7 @@
                     "Entity": "Mesures"
                   }
                 },
-                "Property": "Effet de l’offre resserrée (pts)"
+                "Property": "Score (%)"
               }
             },
             "direction": "Descending"
@@ -70,97 +93,73 @@
       }
     },
     "objects": {
-      "categoryAxis": [
+      "grid": [
         {
           "properties": {
-            "show": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridHorizontal": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
             },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8.5D"
-                }
-              }
-            },
-            "labelColor": {
+            "gridHorizontalColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#0E1E33'"
+                      "Value": "'#EFECE4'"
                     }
                   }
                 }
               }
             },
-            "fontFamily": {
+            "gridHorizontalWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "'Segoe UI Semibold'"
+                  "Value": "1D"
                 }
               }
             },
-            "concatenateLabels": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFECE4'"
+                    }
+                  }
+                }
+              }
+            },
+            "outlineWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "0D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
           }
         }
       ],
-      "valueAxis": [
+      "columnHeaders": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "labelColor": {
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
@@ -171,100 +170,10 @@
                 }
               }
             },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI'"
-                }
-              }
-            },
-            "concatenateLabels": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "legend": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'TopCenter'"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#4A5768'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI'"
-                }
-              }
-            },
-            "showTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0E1E33'"
-                    }
-                  }
+                  "Value": "8D"
                 }
               }
             },
@@ -275,89 +184,115 @@
                 }
               }
             },
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             },
-            "labelPrecision": {
+            "outline": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "'BottomOnly'"
                 }
               }
             },
-            "backgroundTransparency": {
+            "wordWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "true"
                 }
               }
             },
-            "enableBackground": {
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E1E33'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FAF9F5'"
+                    }
+                  }
+                }
+              }
+            },
+            "outline": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            },
+            "wordWrap": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
-            },
-            "labelPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'InsideEnd'"
-                }
-              }
             }
           }
         }
       ],
-      "dataPoint": [
+      "total": [
         {
           "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Mesures"
-                        }
-                      },
-                      "Property": "Couleur du candidat"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "tooltip": [
-        {
-          "properties": {
-            "type": {
+            "totals": {
               "expr": {
                 "Literal": {
-                  "Value": "'Canvas'"
-                }
-              }
-            },
-            "section": {
-              "expr": {
-                "Literal": {
-                  "Value": "'infobulle2027candidat'"
+                  "Value": "false"
                 }
               }
             }
@@ -520,7 +455,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Attal et Philippe captent l'essentiel du report'"
+                  "Value": "'Niveau, dispersion et premières places'"
                 }
               }
             },
@@ -590,7 +525,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Écart de score entre les hypothèses à trois grands candidats et celles à quatre, en points'"
+                  "Value": "'Treize personnalités, classées par score moyen décroissant'"
                 }
               }
             },

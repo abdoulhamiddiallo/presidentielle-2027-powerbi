@@ -151,7 +151,7 @@ def hauteur_texte(paragraphes, largeur):
         pt = max((p[1] or 10) for p in para)
         cpl = max(8, int((largeur - 24) / (pt * 0.52)))
         lignes = max(1, -(-len(txt) // cpl))
-        total += lignes * pt * 1.62 + 3
+        total += lignes * pt * 1.80 + 4
     return int(total)
 
 
@@ -245,11 +245,11 @@ def _verifie_place(vtype, w, h, n_cat, leg, titre):
     utile = h - 52 - (30 if leg else 0) - 12
     if vtype in ("barChart", "clusteredBarChart"):
         par_cat = utile / n_cat
-        mini = 20
+        mini = 30
         sens = "px par barre"
     else:
         par_cat = (w - 24) / n_cat
-        mini = 26
+        mini = 30
         sens = "px par colonne"
     if par_cat < mini:
         _scroll.append("%s « %s » : %.0f %s (minimum %d) : defilement probable"

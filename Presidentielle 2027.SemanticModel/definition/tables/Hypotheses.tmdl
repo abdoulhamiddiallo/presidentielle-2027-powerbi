@@ -2,12 +2,12 @@
 /// a sa propre base de répondants (personnes certaines d'aller voter et ayant
 /// exprimé une intention) et son propre taux de non-réponse.
 table Hypotheses
-	lineageTag: 8f94151c-2749-4863-a5fe-3647bda035ba
+	lineageTag: bfaf260b-7d53-43a0-bd98-1a7097e2243d
 
 	/// Identifiant court de l'hypothèse (H1 à H8).
 	column Code
 		dataType: string
-		lineageTag: 8b5159db-9df9-4ed7-b49b-88da083db737
+		lineageTag: 3990fec7-3809-486c-a8ac-9f73def3137e
 		summarizeBy: none
 		sortByColumn: Ordre
 		sourceColumn: Code
@@ -15,9 +15,9 @@ table Hypotheses
 		annotation SummarizationSetBy = User
 
 	/// Libellé court : les grands candidats de l'hypothèse.
-	column Hypothese
+	column 'Hypothèse'
 		dataType: string
-		lineageTag: d296ff3d-7625-4a0f-9afa-29735db7cfa2
+		lineageTag: 7b221b52-a09c-4662-aa95-374b4240e839
 		summarizeBy: none
 		sortByColumn: Ordre
 		sourceColumn: Hypothese
@@ -25,57 +25,57 @@ table Hypotheses
 		annotation SummarizationSetBy = User
 
 	/// Intitulé complet tel qu'imprimé dans le rapport Ipsos.
-	column Intitule
+	column 'Intitulé'
 		dataType: string
-		lineageTag: 53af9ef9-c42c-499c-b686-d0b4fb8934b1
+		lineageTag: 9b6fdcd8-6cd5-49c7-9afd-3faf3c3c230c
 		summarizeBy: none
 		sourceColumn: Intitule
 
 		annotation SummarizationSetBy = User
 
 	/// Nombre de personnes exprimant une intention de vote.
-	column Base
+	column 'Base exprimée'
 		dataType: int64
 		formatString: #,0
-		lineageTag: d4240b8e-dd5a-4665-bdc8-6639f71dec84
+		lineageTag: 610e276c-f02c-4706-81c5-0a450b51455a
 		summarizeBy: none
 		sourceColumn: Base
 
 		annotation SummarizationSetBy = User
 
-	/// Part (%) des personnes certaines d'aller voter sans intention exprimée.
-	column SansReponse
+	/// Part des personnes certaines d'aller voter sans intention exprimée.
+	column 'Sans réponse (%)'
 		dataType: double
 		formatString: 0.0
-		lineageTag: 3014f723-3130-4a5a-a37c-4a84d6e146ea
+		lineageTag: 9eb598f3-9ac1-4282-80f7-6d5af534ac99
 		summarizeBy: none
 		sourceColumn: SansReponse
 
 		annotation SummarizationSetBy = User
 
 	/// Nombre de candidats présents dans l'hypothèse.
-	column NbCandidats
+	column 'Nb candidats'
 		dataType: int64
 		formatString: 0
-		lineageTag: a4471a15-5ff0-4f28-89ad-889401128e8a
+		lineageTag: f8bab7ba-de2f-4611-9dfc-680def4e38ed
 		summarizeBy: none
 		sourceColumn: NbCandidats
 
 		annotation SummarizationSetBy = User
 
 	/// Candidat du Rassemblement national testé.
-	column FinalisteRN
+	column 'Finaliste RN'
 		dataType: string
-		lineageTag: e2606a96-d1d4-4bf5-8494-a4511adb77da
+		lineageTag: ee1bd637-76a2-4de2-af0f-bf9f9306cb24
 		summarizeBy: none
 		sourceColumn: FinalisteRN
 
 		annotation SummarizationSetBy = User
 
 	/// Candidat social-démocrate testé.
-	column CandidatGauche
+	column 'Candidat de gauche'
 		dataType: string
-		lineageTag: 0ff29126-3e44-47ea-8261-6c1e13c54dbc
+		lineageTag: 5d6ed19d-2462-4422-bf89-0018de4e2413
 		summarizeBy: none
 		sourceColumn: CandidatGauche
 
@@ -84,7 +84,7 @@ table Hypotheses
 	/// Configuration d'offre : quatre ou trois grands candidats face au RN.
 	column Configuration
 		dataType: string
-		lineageTag: da43c1c8-5d4d-4432-9f7c-e6ea3aead890
+		lineageTag: 899f46a8-63cc-44ea-a225-986261b8e048
 		summarizeBy: none
 		sortByColumn: OrdreConfig
 		sourceColumn: Configuration
@@ -95,7 +95,7 @@ table Hypotheses
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: a3852201-d894-470c-a119-9f92951bf5ed
+		lineageTag: a3651d58-a5d1-4eee-add1-70e4026c610c
 		summarizeBy: none
 		sourceColumn: OrdreConfig
 
@@ -105,7 +105,7 @@ table Hypotheses
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 5ac4de7d-d5cf-4972-8d8c-97dcc9aff3d9
+		lineageTag: a1105c48-faf3-4674-abb2-500c39d50e5e
 		summarizeBy: none
 		sourceColumn: Ordre
 

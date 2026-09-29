@@ -37,11 +37,11 @@
                       "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "Base"
+                  "Property": "Base exprimée"
                 }
               },
-              "queryRef": "Hypotheses.Base",
-              "nativeQueryRef": "Base"
+              "queryRef": "Hypotheses.Base exprimée",
+              "nativeQueryRef": "Base exprimée"
             },
             {
               "field": {
@@ -51,11 +51,11 @@
                       "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "SansReponse"
+                  "Property": "Sans réponse (%)"
                 }
               },
-              "queryRef": "Hypotheses.SansReponse",
-              "nativeQueryRef": "SansReponse"
+              "queryRef": "Hypotheses.Sans réponse (%)",
+              "nativeQueryRef": "Sans réponse (%)"
             },
             {
               "field": {
@@ -65,11 +65,11 @@
                       "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "NbCandidats"
+                  "Property": "Nb candidats"
                 }
               },
-              "queryRef": "Hypotheses.NbCandidats",
-              "nativeQueryRef": "NbCandidats"
+              "queryRef": "Hypotheses.Nb candidats",
+              "nativeQueryRef": "Nb candidats"
             }
           ]
         }

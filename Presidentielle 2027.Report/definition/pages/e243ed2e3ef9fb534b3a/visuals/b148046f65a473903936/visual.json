@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "d83d746162c8f875f824",
+  "name": "b148046f65a473903936",
   "position": {
     "x": 696,
-    "y": 442,
+    "y": 454,
     "z": 34,
     "width": 544,
-    "height": 242,
+    "height": 230,
     "tabOrder": 34
   },
   "visual": {
@@ -35,7 +35,7 @@
                     }
                   },
                   {
-                    "value": "Bardella s'établit entre 33,5 % et 36 %, Le Pen entre 31 % et 32 %. L'avance sur le deuxième ne descend jamais sous 16,5 points.",
+                    "value": "Bardella de 33,5 à 36 %, Le Pen de 31 à 32 %. L'avance sur le deuxième ne descend jamais sous 16,5 points.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -77,7 +77,7 @@
                     }
                   },
                   {
-                    "value": "Philippe passe de 13 % à 19 % et Attal de 8,5 % à 17,5 % selon que l'autre candidat du bloc central est présent ou non.",
+                    "value": "Philippe passe de 13 à 19 % et Attal de 8,5 à 17,5 % selon que l'autre candidat du bloc central est présent.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -120,48 +120,6 @@
                   },
                   {
                     "value": "Ses cinq candidats se partagent 29,5 à 35 points ; Mélenchon en capte 13 à 13,5 à lui seul.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "9pt",
-                      "color": "#4A5768"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": " ",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "5pt",
-                      "color": "#8A94A3"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "▍ ",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "9.5pt",
-                      "color": "#B08A26"
-                    }
-                  },
-                  {
-                    "value": "Une réserve de 7 à 11 % : ",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "9.5pt",
-                      "color": "#0E1E33"
-                    }
-                  },
-                  {
-                    "value": "C'est la part des certains d'aller voter sans intention exprimée. Elle croît quand l'offre se resserre.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",

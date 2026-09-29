@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Écriture des données nettoyées au format CSV et du modèle sémantique TMDL."""
-import os, csv, uuid
+import os, re, csv, uuid
 from pdata import (CANDIDATS, HYPOTHESES, SCORES, HYPO_ORDER,
                    ACCENTS, PARTI_ACC, BLOC_ACC, NOM_COURT, COULEUR_BLOC,
                    ORDRE_CONFIG)
@@ -49,12 +49,17 @@ def ecrire_csv(dossier):
 
 
 # --------------------------------------------------------------- TMDL -------
+def _nom_tmdl(name):
+    """Un nom qui n'est pas un identifiant simple doit etre delimite."""
+    return name if re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", name) else "'%s'" % name
+
+
 def _col(name, dtype, fmt=None, hidden=False, sort_by=None, desc=None,
-         summarize="none"):
+         summarize="none", source=None):
     L = []
     if desc:
         L.append("\t/// " + desc)
-    L.append("\tcolumn %s" % name)
+    L.append("\tcolumn %s" % _nom_tmdl(name))
     L.append("\t\tdataType: %s" % dtype)
     if hidden:
         L.append("\t\tisHidden")
@@ -63,8 +68,8 @@ def _col(name, dtype, fmt=None, hidden=False, sort_by=None, desc=None,
     L.append("\t\tlineageTag: %s" % lt())
     L.append("\t\tsummarizeBy: %s" % summarize)
     if sort_by:
-        L.append("\t\tsortByColumn: %s" % sort_by)
-    L.append("\t\tsourceColumn: %s" % name)
+        L.append("\t\tsortByColumn: %s" % _nom_tmdl(sort_by))
+    L.append("\t\tsourceColumn: %s" % (source or name))
     L.append("")
     L.append("\t\tannotation SummarizationSetBy = User")
     L.append("")
@@ -94,7 +99,7 @@ def table_candidats(chemin):
          "table Candidats", "\tlineageTag: %s" % lt(), ""]
     L.append(_col("Candidat", "string", desc="Nom de la personnalité testée.",
                   sort_by="Ordre"))
-    L.append(_col("NomCourt", "string", sort_by="Ordre",
+    L.append(_col("Nom court", "string", sort_by="Ordre", source="NomCourt",
                   desc="Nom de famille seul, pour les axes de graphiques étroits."))
     L.append(_col("Parti", "string", desc="Formation politique de rattachement."))
     L.append(_col("Bloc", "string", sort_by="OrdreBloc",
@@ -121,18 +126,20 @@ def table_hypotheses(chemin):
          "table Hypotheses", "\tlineageTag: %s" % lt(), ""]
     L.append(_col("Code", "string", desc="Identifiant court de l'hypothèse (H1 à H8).",
                   sort_by="Ordre"))
-    L.append(_col("Hypothese", "string", sort_by="Ordre",
+    L.append(_col("Hypothèse", "string", sort_by="Ordre", source="Hypothese",
                   desc="Libellé court : les grands candidats de l'hypothèse."))
-    L.append(_col("Intitule", "string",
+    L.append(_col("Intitulé", "string", source="Intitule",
                   desc="Intitulé complet tel qu'imprimé dans le rapport Ipsos."))
-    L.append(_col("Base", "int64", fmt="#,0", summarize="none",
+    L.append(_col("Base exprimée", "int64", fmt="#,0", summarize="none", source="Base",
                   desc="Nombre de personnes exprimant une intention de vote."))
-    L.append(_col("SansReponse", "double", fmt="0.0",
-                  desc="Part (%) des personnes certaines d'aller voter sans intention exprimée."))
-    L.append(_col("NbCandidats", "int64", fmt="0",
+    L.append(_col("Sans réponse (%)", "double", fmt="0.0", source="SansReponse",
+                  desc="Part des personnes certaines d'aller voter sans intention exprimée."))
+    L.append(_col("Nb candidats", "int64", fmt="0", source="NbCandidats",
                   desc="Nombre de candidats présents dans l'hypothèse."))
-    L.append(_col("FinalisteRN", "string", desc="Candidat du Rassemblement national testé."))
-    L.append(_col("CandidatGauche", "string", desc="Candidat social-démocrate testé."))
+    L.append(_col("Finaliste RN", "string", source="FinalisteRN",
+                  desc="Candidat du Rassemblement national testé."))
+    L.append(_col("Candidat de gauche", "string", source="CandidatGauche",
+                  desc="Candidat social-démocrate testé."))
     L.append(_col("Configuration", "string", sort_by="OrdreConfig",
                   desc="Configuration d'offre : quatre ou trois grands candidats face au RN."))
     L.append(_col("OrdreConfig", "int64", fmt="0", hidden=True))
@@ -168,16 +175,16 @@ def table_intentions(chemin):
 MESURES = [
     ("Score (%)",
      "DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )",
-     "0.0%", "01 Intentions de vote",
+     "0.0 %", "01 Intentions de vote",
      "Intention de vote en % des exprimés. Somme des scores du contexte courant, moyennée "
      "sur les hypothèses sélectionnées : exacte pour une hypothèse, moyenne des scénarios sinon."),
     ("Score max (%)",
      "DIVIDE ( MAXX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )",
-     "0.0%", "01 Intentions de vote",
+     "0.0 %", "01 Intentions de vote",
      "Meilleur score obtenu parmi les hypothèses sélectionnées."),
     ("Score min (%)",
      "DIVIDE ( MINX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )",
-     "0.0%", "01 Intentions de vote",
+     "0.0 %", "01 Intentions de vote",
      "Score le plus bas parmi les hypothèses sélectionnées."),
     ("Amplitude (pts)",
      "VAR _max = [Score max (%)]\nVAR _min = [Score min (%)]\n"
@@ -186,7 +193,7 @@ MESURES = [
      "Écart entre le meilleur et le moins bon score, en points : sensibilité à la configuration d'offre."),
     ("Meilleur score mesuré (%)",
      "DIVIDE ( MAXX ( ALLSELECTED ( Intentions ), Intentions[Score] ), 100 )",
-     "0.0%", "01 Intentions de vote",
+     "0.0 %", "01 Intentions de vote",
      "Score le plus élevé observé, tous candidats et toutes hypothèses sélectionnées confondus."),
     ("Marge d’erreur (pts)",
      "AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( AVERAGE ( Intentions[Marge] ) ) )",
@@ -194,19 +201,19 @@ MESURES = [
      "Demi-intervalle de confiance à 95 % publié par Ipsos, en points."),
     ("Borne basse (%)",
      "IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] - DIVIDE ( [Marge d’erreur (pts)], 100 ) )",
-     "0.0%", "02 Précision statistique",
+     "0.0 %", "02 Précision statistique",
      "Borne inférieure de l'intervalle de confiance à 95 %."),
     ("Borne haute (%)",
      "IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] + DIVIDE ( [Marge d’erreur (pts)], 100 ) )",
-     "0.0%", "02 Précision statistique",
+     "0.0 %", "02 Précision statistique",
      "Borne supérieure de l'intervalle de confiance à 95 %."),
-    ("Base exprimés",
-     "AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base] ) ) )",
+    ("Base moyenne",
+     "AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base exprimée] ) ) )",
      "#,0", "02 Précision statistique",
      "Nombre de personnes ayant exprimé une intention de vote."),
     ("Sans intention exprimée (%)",
-     "DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[SansReponse] ) ) ), 100 )",
-     "0.0%", "02 Précision statistique",
+     "DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Sans réponse (%)] ) ) ), 100 )",
+     "0.0 %", "02 Précision statistique",
      "Part des personnes certaines d'aller voter n'ayant exprimé aucune intention."),
     ("Nb hypothèses",
      "DISTINCTCOUNT ( Hypotheses[Code] )", "0", "03 Cadrage",
@@ -222,12 +229,12 @@ MESURES = [
     ("Score du 1er (%)",
      "VAR _t = ADDCOLUMNS ( ALLSELECTED ( Candidats[Candidat] ), \"@s\", [Score (%)] )\n"
      "RETURN MAXX ( _t, [@s] )",
-     "0.0%", "04 Écarts", "Score du candidat arrivé en tête."),
+     "0.0 %", "04 Écarts", "Score du candidat arrivé en tête."),
     ("Score du 2e (%)",
      "VAR _t = ADDCOLUMNS ( ALLSELECTED ( Candidats[Candidat] ), \"@s\", [Score (%)] )\n"
      "VAR _top = MAXX ( _t, [@s] )\n"
      "RETURN MAXX ( FILTER ( _t, [@s] < _top ), [@s] )",
-     "0.0%", "04 Écarts", "Meilleur score hors candidat de tête."),
+     "0.0 %", "04 Écarts", "Meilleur score hors candidat de tête."),
     ("Écart 1er / 2e (pts)",
      "( [Score du 1er (%)] - [Score du 2e (%)] ) * 100", "0.0", "04 Écarts",
      "Avance du candidat de tête sur son premier poursuivant, en points."),
@@ -236,21 +243,21 @@ MESURES = [
      "0.0", "04 Écarts", "Retard du candidat sur celui arrivé en tête, en points."),
     ("Total extrême droite (%)",
      "CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Bloc] = \"Extrême droite\" )",
-     "0.0%", "05 Blocs politiques",
+     "0.0 %", "05 Blocs politiques",
      "Total des candidats d'extrême droite présents dans l'hypothèse."),
     ("Total gauche (%)",
      "CALCULATE ( [Score (%)], ALL ( Candidats ),\n"
      "    Candidats[Bloc] IN { \"Gauche radicale\", \"Gauche et écologistes\" } )",
-     "0.0%", "05 Blocs politiques",
+     "0.0 %", "05 Blocs politiques",
      "Total des candidats de gauche et écologistes."),
     ("Total centre et droite (%)",
      "CALCULATE ( [Score (%)], ALL ( Candidats ),\n"
      "    Candidats[Bloc] IN { \"Centre\", \"Droite\" } )",
-     "0.0%", "05 Blocs politiques",
+     "0.0 %", "05 Blocs politiques",
      "Total du centre et de la droite républicaine."),
     ("Poids dans le bloc (%)",
      "DIVIDE ( [Score (%)], CALCULATE ( [Score (%)], ALLEXCEPT ( Candidats, Candidats[Bloc] ) ) )",
-     "0.0%", "05 Blocs politiques", "Part du candidat dans le total de son bloc."),
+     "0.0 %", "05 Blocs politiques", "Part du candidat dans le total de son bloc."),
     ("Écart minimal 1er / 2e (pts)",
      "VAR _t = ADDCOLUMNS ( VALUES ( Hypotheses[Code] ), \"@e\",\n"
      "    CALCULATE ( [Écart 1er / 2e (pts)] ) )\n"
@@ -278,7 +285,7 @@ MESURES = [
     ("Profil · score (%)",
      "VAR _ref = [Candidat de référence]\n"
      "RETURN CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )",
-     "0.0%", "08 Page profil", "Score du candidat de référence."),
+     "0.0 %", "08 Page profil", "Score du candidat de référence."),
     ("Profil · amplitude (pts)",
      "VAR _ref = [Candidat de référence]\n"
      "RETURN CALCULATE ( [Amplitude (pts)], ALL ( Candidats ), Candidats[Candidat] = _ref )",
@@ -294,11 +301,11 @@ MESURES = [
     ("Profil · borne basse (%)",
      "VAR _ref = [Candidat de référence]\n"
      "RETURN CALCULATE ( [Borne basse (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )",
-     "0.0%", "08 Page profil", "Borne inférieure pour le candidat de référence."),
+     "0.0 %", "08 Page profil", "Borne inférieure pour le candidat de référence."),
     ("Profil · borne haute (%)",
      "VAR _ref = [Candidat de référence]\n"
      "RETURN CALCULATE ( [Borne haute (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )",
-     "0.0%", "08 Page profil", "Borne supérieure pour le candidat de référence."),
+     "0.0 %", "08 Page profil", "Borne supérieure pour le candidat de référence."),
     ("Profil · écart à sa moyenne (pts)",
      "VAR _ref = [Candidat de référence]\n"
      "VAR _sc = CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )\n"
@@ -321,7 +328,7 @@ MESURES = [
     ("Score au classement (%)",
      "VAR _maxCandidat = CALCULATE ( [Score max (%)], ALL ( Hypotheses ) )\n"
      "RETURN IF ( _maxCandidat >= 0.05, [Score (%)] )",
-     "0.0%", "01 Intentions de vote",
+     "0.0 %", "01 Intentions de vote",
      "Score restreint aux personnalités dépassant 5 % dans au moins une hypothèse : "
      "allège les visuels de flux, où treize séries deviennent illisibles."),
     ("Couleur du bloc",
@@ -334,7 +341,7 @@ MESURES = [
      "Rang du candidat dans l'hypothèse, restreint aux personnalités dépassant 5 % : "
      "sert d'axe au graphique de rangs."),
     ("Hypothèse sélectionnée",
-     "SELECTEDVALUE ( Hypotheses[Intitule],\n"
+     "SELECTEDVALUE ( Hypotheses[Intitulé],\n"
      "    \"Moyenne des \" & [Nb hypothèses] & \" hypothèses testées\" )",
      None, "06 Titres dynamiques", "Titre dynamique reprenant l'intitulé Ipsos."),
     ("Candidat sélectionné",
@@ -342,7 +349,7 @@ MESURES = [
      None, "06 Titres dynamiques", "Titre dynamique de la page profil."),
     ("Note de lecture",
      "VAR _n = [Nb hypothèses]\n"
-     "VAR _base = FORMAT ( [Base exprimés], \"#,0\", \"fr-FR\" )\n"
+     "VAR _base = FORMAT ( [Base moyenne], \"#,0\", \"fr-FR\" )\n"
      "VAR _nsp = FORMAT ( [Sans intention exprimée (%)] * 100, \"0\", \"fr-FR\" )\n"
      "RETURN\n"
      "    IF ( _n = 1,\n"

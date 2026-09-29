@@ -51,11 +51,11 @@
                       "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "FinalisteRN"
+                  "Property": "Finaliste RN"
                 }
               },
-              "queryRef": "Hypotheses.FinalisteRN",
-              "nativeQueryRef": "FinalisteRN"
+              "queryRef": "Hypotheses.Finaliste RN",
+              "nativeQueryRef": "Finaliste RN"
             },
             {
               "field": {
@@ -65,11 +65,11 @@
                       "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "CandidatGauche"
+                  "Property": "Candidat de gauche"
                 }
               },
-              "queryRef": "Hypotheses.CandidatGauche",
-              "nativeQueryRef": "CandidatGauche"
+              "queryRef": "Hypotheses.Candidat de gauche",
+              "nativeQueryRef": "Candidat de gauche"
             }
           ]
         }

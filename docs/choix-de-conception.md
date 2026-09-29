@@ -87,11 +87,20 @@ La limite est nette : **dès qu'un visuel porte une série, Power BI ignore la
 mise en forme conditionnelle** et distribue les couleurs du thème dans l'ordre
 d'apparition des séries.
 
+Pire : quand une règle conditionnelle est déclarée sur un visuel à série, Power
+BI n'ignore pas seulement la règle, il abandonne aussi la palette du thème et
+retombe sur sa palette par défaut. Le défaut ne se voit pas dans les fichiers de
+définition, seulement à l'écran ou sur un export PDF du rapport.
+
 Deux visuels sont concernés, les colonnes groupées de la page 02 et le graphique
 de pente de la page 03. Ils n'affichent que les personnalités dépassant 5 %. La
-parade consiste donc à ordonner le tableau `dataColors` du thème pour que ces
-neuf personnalités viennent en tête, dans leur ordre d'apparition. C'est ce que
-fait la fonction `_couleurs_theme` de `pbuild.py`.
+parade tient en deux gestes :
+
+1. Ne pas déclarer de règle conditionnelle sur ces deux visuels. Sans règle, la
+   palette du thème s'applique normalement.
+2. Ordonner le tableau `dataColors` du thème pour que ces neuf personnalités
+   viennent en tête, dans leur ordre d'apparition. C'est ce que fait la fonction
+   `_couleurs_theme` de `pbuild.py`.
 
 Un graphique en ruban avait été essayé pour la page 02. Il a été abandonné : un
 ruban trie ses séries par valeur, donc l'ordre d'apparition change d'une colonne
@@ -144,6 +153,12 @@ partir de la largeur du cadre et de la taille de police, puis la hauteur totale
 du bloc. Si le texte dépasse son cadre, la génération le signale avant que
 quiconque ouvre le rapport.
 
+Les seuils des deux premiers contrôles ont été recalés sur un export PDF du
+rapport : l'estimation théorique était trop optimiste, et trois visuels
+affichaient une barre de défilement alors que la génération ne signalait rien.
+Le minimum est passé à trente pixels par catégorie, et l'interligne estimé de
+1,62 à 1,80 fois la taille de police.
+
 **Apostrophes dans les noms TMDL.** Un nom délimité par des apostrophes simples
 ne peut pas contenir d'apostrophe droite : `measure 'Marge d'erreur (pts)'` fait
 échouer le chargement du modèle avec une erreur `InvalidLineType` qui ne désigne
@@ -175,3 +190,26 @@ classement.
 Elle montre le score moyen, l'amplitude, le nombre de premières places et le
 profil par hypothèse du candidat survolé. C'est le seul endroit du rapport où un
 détail candidat par candidat apparaît sans quitter la page courante.
+
+---
+
+## 11. Ce que la relecture d'un export a corrigé
+
+Les fichiers de définition peuvent être parfaitement valides et le rendu être
+mauvais. Un export PDF des six pages a révélé six défauts invisibles autrement :
+
+- les séries des pages 02 et 03 affichaient la palette par défaut de Power BI au
+  lieu des couleurs de parti, pour la raison expliquée en section 5 ;
+- trois visuels portaient une barre de défilement et coupaient du contenu, dont
+  le dernier candidat d'un classement à treize lignes ;
+- la légende du graphique de pente tronquait les noms et débordait ;
+- le graphique des effets de l'offre n'affichait que trois étiquettes sur treize,
+  parce qu'un graphique à colonnes empilées n'accepte que des étiquettes
+  intérieures ;
+- quatre en-têtes de colonnes sortaient en notation technique, du type
+  `SansReponse` ou `FinalisteRN` ;
+- les pourcentages s'affichaient collés au signe, contrairement à l'usage
+  typographique français.
+
+Chacun de ces points a été corrigé dans le générateur, pas dans les fichiers
+produits : la correction survit à la prochaine génération.

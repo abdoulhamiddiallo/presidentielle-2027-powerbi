@@ -82,7 +82,7 @@ REPORT_JSON = {
             "type": "SharedResources",
         },
         "customTheme": {
-            "name": "SondageIpsos2027",
+            "name": "SondageIpsos2027.json",
             "reportVersionAtImport": {"visual": "2.11.0", "report": "3.4.0", "page": "2.3.1"},
             "type": "RegisteredResources",
         },
@@ -97,7 +97,7 @@ REPORT_JSON = {
         {"name": "SharedResources", "type": "SharedResources",
          "items": [{"name": "CY26SU07", "path": "BaseThemes/CY26SU07.json", "type": "BaseTheme"}]},
         {"name": "RegisteredResources", "type": "RegisteredResources",
-         "items": [{"name": "SondageIpsos2027", "path": "SondageIpsos2027.json",
+         "items": [{"name": "SondageIpsos2027.json", "path": "SondageIpsos2027.json",
                     "type": "CustomTheme"}]},
     ],
     "settings": {

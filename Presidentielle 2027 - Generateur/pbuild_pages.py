@@ -62,7 +62,7 @@ def p01_constat():
                     sous_titre="En % des suffrages exprimés, couleur du parti, "
                                "J. Bardella et M. Le Pen ne sont jamais testés ensemble"))
 
-    v.append(barres(696, 230, 544, 202, 32,
+    v.append(barres(696, 230, 544, 214, 32,
                     cat="Bloc", vals="Score (%)", table_cat=C,
                     couleur_mesure="Couleur du bloc",
                     tri=tri_mesure(M, "Score (%)"), n_cat=5,
@@ -70,22 +70,18 @@ def p01_constat():
                     titre="Le bloc d'extrême droite pèse près de 38 %",
                     sous_titre="Total de chaque bloc, du plus lourd au plus léger"))
 
-    v.append(bloc_prose(696, 442, 544, 242, [
+    v.append(bloc_prose(696, 454, 544, 230, [
         puce("Le RN en tête partout",
-             "Bardella s'établit entre 33,5 % et 36 %, Le Pen entre 31 % et 32 %. "
-             "L'avance sur le deuxième ne descend jamais sous 16,5 points."),
+             "Bardella de 33,5 à 36 %, Le Pen de 31 à 32 %. L'avance sur le "
+             "deuxième ne descend jamais sous 16,5 points."),
         VIDE,
         puce("Le second rang dépend de l'offre",
-             "Philippe passe de 13 % à 19 % et Attal de 8,5 % à 17,5 % selon que "
-             "l'autre candidat du bloc central est présent ou non."),
+             "Philippe passe de 13 à 19 % et Attal de 8,5 à 17,5 % selon que l'autre "
+             "candidat du bloc central est présent."),
         VIDE,
         puce("La gauche reste fragmentée",
              "Ses cinq candidats se partagent 29,5 à 35 points ; Mélenchon en capte "
              "13 à 13,5 à lui seul."),
-        VIDE,
-        puce("Une réserve de 7 à 11 %",
-             "C'est la part des certains d'aller voter sans intention exprimée. "
-             "Elle croît quand l'offre se resserre."),
     ], z=34, titre="Ce qu'il faut retenir"))
 
     v += pied(0, "Résultats en % des exprimés.")
@@ -102,7 +98,6 @@ def p02_stabilite():
     v.append(colonnes_groupees(MARGE, 96, UTILE, 296, 30,
                                cat="Code", vals="Score au classement (%)", table_cat=Hy,
                                serie="Candidat", table_serie=C,
-                               couleur_mesure="Couleur du candidat",
                                tri=tri_colonne(Hy, "Ordre"), n_cat=8,
                                axe_val=True, grille=True, lbl=False, cat_size=10,
                                leg=True, leg_pos="Bottom", leg_size=8.5,
@@ -148,17 +143,16 @@ def p03_offre():
                 "points ; le socle du Rassemblement national ne bouge que de 2,5",
                 "03 · L'EFFET DE L'OFFRE")
 
-    v.append(lignes(MARGE, 96, 596, 300, 30,
+    v.append(lignes(MARGE, 96, 596, 270, 30,
                     cat="Configuration", vals="Score au classement (%)", table_cat=Hy,
-                    serie="Candidat", table_serie=C,
-                    couleur_mesure="Couleur du candidat",
+                    serie="Nom court", table_serie=C,
                     axe_val=True, grille=True, lbl=False, cat_size=9.5, marqueurs=True,
                     leg=True, leg_pos="Bottom", leg_size=8.5,
                     titre="Une candidature de moins, et le bloc central se redistribue",
                     sous_titre="Score en configuration à quatre grands candidats, puis à "
                                "trois, personnalités au-dessus de 5 %"))
 
-    v.append(nuage(652, 96, 588, 300, 32,
+    v.append(nuage(652, 96, 588, 270, 32,
                    detail="Candidat", mx="Score (%)", my="Amplitude (pts)",
                    table_detail=C, couleur_mesure="Couleur du candidat",
                    titre="Un score élevé n'est pas un score solide",
@@ -166,17 +160,17 @@ def p03_offre():
                               "ordonnée",
                    x_titre="Score moyen (%)", y_titre="Amplitude (points)"))
 
-    v.append(colonnes(MARGE, 412, 596, 272, 34,
-                      cat="NomCourt", vals="Effet de l’offre resserrée (pts)", table_cat=C,
+    v.append(colonnes_groupees(MARGE, 376, 596, 308, 34,
+                      cat="Nom court", vals="Effet de l’offre resserrée (pts)", table_cat=C,
                       tri=tri_mesure(M, "Effet de l’offre resserrée (pts)"),
                       couleur_mesure="Couleur du candidat",
-                      lbl_size=9, cat_size=8.5, precision=1,
+                      lbl_size=9, lbl_pos="OutsideEnd", cat_size=8.5, precision=1,
                       n_cat=13, tooltip_page=TT,
                       titre="Attal et Philippe captent l'essentiel du report",
                       sous_titre="Écart de score entre les hypothèses à trois grands "
                                  "candidats et celles à quatre, en points"))
 
-    v.append(tableau(652, 412, 588, 272, 36, [
+    v.append(tableau(652, 376, 588, 308, 36, [
         (C, "Candidat", False),
         (M, "Score (%)", True),
         (M, "Amplitude (pts)", True),
@@ -214,7 +208,7 @@ def p04_profils():
                            size=26))
 
     v.append(barres(288, 230, 476, 454, 40,
-                    cat="Hypothese", vals="Profil · score (%)", table_cat=Hy,
+                    cat="Hypothèse", vals="Profil · score (%)", table_cat=Hy,
                     n_cat=8, tooltip_page=TT, couleur_mesure="Profil · couleur",
                     tri=tri_colonne(Hy, "Ordre"),
                     lbl_size=10, lbl_pos="OutsideEnd", cat_size=9, marge_cat=44,
@@ -353,9 +347,9 @@ def p06_methode():
 
     v.append(tableau(432, 96, 400, 290, 22, [
         (Hy, "Code", False),
-        (Hy, "Base", False),
-        (Hy, "SansReponse", False),
-        (Hy, "NbCandidats", False),
+        (Hy, "Base exprimée", False),
+        (Hy, "Sans réponse (%)", False),
+        (Hy, "Nb candidats", False),
     ], tri=tri_colonne(Hy, "Ordre"), size=9.5, entete=8.5, padding_ligne=2,
         titre="Base et non-réponse",
         sous_titre="Personnes exprimées et part sans intention déclarée"))
@@ -363,19 +357,19 @@ def p06_methode():
     v.append(tableau(432, 396, 400, 288, 23, [
         (Hy, "Code", False),
         (Hy, "Configuration", False),
-        (Hy, "FinalisteRN", False),
-        (Hy, "CandidatGauche", False),
+        (Hy, "Finaliste RN", False),
+        (Hy, "Candidat de gauche", False),
     ], tri=tri_colonne(Hy, "Ordre"), size=8.5, entete=8, padding_ligne=4,
         titre="Ce que teste chaque hypothèse",
         sous_titre="Configuration d'offre et candidats pivots"))
 
-    v.append(barres(844, 96, 396, 340, 24,
-                    cat="Candidat", vals="Marge d’erreur (pts)", table_cat=C, n_cat=13,
-                    tri=tri_mesure(M, "Marge d’erreur (pts)"),
-                    couleur_mesure="Couleur du candidat",
-                    lbl_size=8.5, cat_size=8.5, marge_cat=36,
-                    titre="La marge croît avec le score",
-                    sous_titre="Demi-intervalle de confiance à 95 %, en points"))
+    v.append(nuage(844, 96, 396, 340, 24,
+                   detail="Candidat", mx="Score (%)", my="Marge d’erreur (pts)",
+                   table_detail=C, couleur_mesure="Couleur du candidat",
+                   taille_marque=5,
+                   titre="La marge croît avec le score",
+                   sous_titre="Demi-intervalle de confiance à 95 %, en points",
+                   x_titre="Score moyen (%)", y_titre="Marge (points)"))
 
     v.append(bloc_prose(844, 446, 396, 238, [
         [("Sur une base de 1 079 personnes, un score mesuré à 20 % signifie qu'il y a "

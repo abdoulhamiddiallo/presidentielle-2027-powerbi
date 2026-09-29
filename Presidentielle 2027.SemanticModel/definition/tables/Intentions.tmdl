@@ -1,12 +1,12 @@
 /// Table de faits : un enregistrement par couple (hypothèse, candidat).
 /// 84 lignes issues des pages 6 à 13 du rapport Ipsos.
 table Intentions
-	lineageTag: f25b4bfa-43aa-4973-9d41-1a58d29cc2ce
+	lineageTag: bb4d52cf-4d50-4d91-b59f-350da81b3834
 
 	column Code
 		dataType: string
 		isHidden
-		lineageTag: 317fea8a-8144-48d8-80b6-b0c152026986
+		lineageTag: 2659af54-b8ae-4556-b13b-dd69af5ab95c
 		summarizeBy: none
 		sourceColumn: Code
 
@@ -15,7 +15,7 @@ table Intentions
 	column Candidat
 		dataType: string
 		isHidden
-		lineageTag: 71c2b62f-80aa-4f6a-889c-7b3b06ca89ef
+		lineageTag: 2498aadb-fb7f-40fd-bcf9-0c3ccecf8407
 		summarizeBy: none
 		sourceColumn: Candidat
 
@@ -26,7 +26,7 @@ table Intentions
 		dataType: double
 		isHidden
 		formatString: 0.0
-		lineageTag: a00ed4b9-485b-4298-9f4b-03b61f3a0370
+		lineageTag: 5b0b8056-51bd-4d58-a337-9a821526b855
 		summarizeBy: none
 		sourceColumn: Score
 
@@ -37,7 +37,7 @@ table Intentions
 		dataType: double
 		isHidden
 		formatString: 0.0
-		lineageTag: 02c1475c-79cb-4107-9877-ef902174b4ef
+		lineageTag: 9b416fca-3520-485d-88d2-13ced6096b07
 		summarizeBy: none
 		sourceColumn: Marge
 

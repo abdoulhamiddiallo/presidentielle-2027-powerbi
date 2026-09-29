@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "1976fec68205f9fb3741",
+  "name": "7b5f2e8877e96365d4c2",
   "position": {
-    "x": 844,
-    "y": 96,
-    "z": 24,
-    "width": 396,
-    "height": 340,
-    "tabOrder": 24
+    "x": 288,
+    "y": 230,
+    "z": 40,
+    "width": 476,
+    "height": 454,
+    "tabOrder": 40
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Candidats"
+                      "Entity": "Hypotheses"
                     }
                   },
-                  "Property": "Candidat"
+                  "Property": "Hypothèse"
                 }
               },
-              "queryRef": "Candidats.Candidat",
-              "nativeQueryRef": "Candidat",
+              "queryRef": "Hypotheses.Hypothèse",
+              "nativeQueryRef": "Hypothèse",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "Mesures"
                     }
                   },
-                  "Property": "Marge d’erreur (pts)"
+                  "Property": "Profil · score (%)"
                 }
               },
-              "queryRef": "Mesures.Marge d’erreur (pts)",
-              "nativeQueryRef": "Marge d’erreur (pts)"
+              "queryRef": "Mesures.Profil · score (%)",
+              "nativeQueryRef": "Profil · score (%)"
             }
           ]
         }
@@ -55,16 +55,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Mesures"
+                    "Entity": "Hypotheses"
                   }
                 },
-                "Property": "Marge d’erreur (pts)"
+                "Property": "Ordre"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -97,7 +97,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8.5D"
+                  "Value": "9D"
                 }
               }
             },
@@ -129,7 +129,7 @@
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "36D"
+                  "Value": "44D"
                 }
               }
             }
@@ -260,7 +260,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8.5D"
+                  "Value": "10D"
                 }
               }
             },
@@ -313,7 +313,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'InsideEnd'"
+                  "Value": "'OutsideEnd'"
                 }
               }
             }
@@ -333,7 +333,7 @@
                           "Entity": "Mesures"
                         }
                       },
-                      "Property": "Couleur du candidat"
+                      "Property": "Profil · couleur"
                     }
                   }
                 }
@@ -348,6 +348,26 @@
                 }
               }
             ]
+          }
+        }
+      ],
+      "tooltip": [
+        {
+          "properties": {
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'infobulle2027candidat'"
+                }
+              }
+            }
           }
         }
       ]
@@ -507,7 +527,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'La marge croît avec le score'"
+                  "Value": "'Son niveau, hypothèse par hypothèse'"
                 }
               }
             },
@@ -577,7 +597,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Demi-intervalle de confiance à 95 %, en points'"
+                  "Value": "'En % des suffrages exprimés'"
                 }
               }
             },

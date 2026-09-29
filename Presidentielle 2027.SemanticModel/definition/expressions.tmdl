@@ -2,7 +2,7 @@
 /// Modifiez cette valeur pour pointer vers votre copie locale du dossier
 /// « Presidentielle 2027 - Donnees », separateur final compris.
 expression CheminDonnees = "C:\Projets\Presidentielle 2027\Presidentielle 2027 - Donnees\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
-	lineageTag: 90300e08-fa17-4e01-aaa4-2ac62368f473
+	lineageTag: 54999d90-392e-4fab-b2c7-2a2109531173
 
 	annotation PBI_NavigationStepName = Navigation
 

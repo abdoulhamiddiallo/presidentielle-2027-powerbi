@@ -107,7 +107,7 @@ def donnees(vis):
         return [(b_, bloc_moy(b_), CB[b_]) for b_ in BLOCS]
     if cat == "Candidat" and y.startswith("Marge"):
         r = [(c, mrg(c), "#93A9C4") for c in CANDS]; r.sort(key=lambda t: -t[1]); return r
-    if cat == "NomCourt":
+    if cat == "Nom court":
         r = [(COURT[c], eff(c), "#2E5C8A") for c in CANDS]; r.sort(key=lambda t: -t[1]); return r
     if cat == "Hypothese":
         return [(LIB[h], 100.0, "#7C8B9E") for h in HYPO_ORDER]
@@ -314,7 +314,7 @@ def rendu():
                 qs = prop(vis, "visual", "query", "queryState", defaut={})
                 if vt == "tableEx":
                     cols = [q["nativeQueryRef"] for q in qs["Values"]["projections"]]
-                    nrows = 13 if any(c in ("Candidat", "NomCourt") for c in cols) else 8
+                    nrows = 13 if any(c in ("Candidat", "Nom court") for c in cols) else 8
                     labs = ([COURT[c] for c in CANDS] if nrows == 13
                             else [h for h in HYPO_ORDER])
                 else:

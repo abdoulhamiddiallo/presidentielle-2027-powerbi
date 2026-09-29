@@ -1,24 +1,24 @@
 /// Conteneur de mesures. Toute la logique d'analyse du sondage est ici.
 table Mesures
-	lineageTag: 0bf81107-093d-4a27-9489-6e570b080f2e
+	lineageTag: ecb257b5-7aed-4648-bc2b-876d76519956
 
 	/// Intention de vote en % des exprimés. Somme des scores du contexte courant, moyennée sur les hypothèses sélectionnées : exacte pour une hypothèse, moyenne des scénarios sinon.
 	measure 'Score (%)' = DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 01 Intentions de vote
-		lineageTag: 0f70df14-b4b8-430d-b157-307841fb9ff1
+		lineageTag: a48a1b36-d9c7-4221-b25d-252e306644c8
 
 	/// Meilleur score obtenu parmi les hypothèses sélectionnées.
 	measure 'Score max (%)' = DIVIDE ( MAXX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 01 Intentions de vote
-		lineageTag: ff10aef1-7d30-446d-b288-d6c51ef84a7a
+		lineageTag: 10a84b1d-c26d-43e2-ab0c-58d23bfb7957
 
 	/// Score le plus bas parmi les hypothèses sélectionnées.
 	measure 'Score min (%)' = DIVIDE ( MINX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 01 Intentions de vote
-		lineageTag: 9c59f343-9fcb-43ac-b58b-1032fee42926
+		lineageTag: 1110af27-d57a-491d-8c7e-68926d421353
 
 	/// Écart entre le meilleur et le moins bon score, en points : sensibilité à la configuration d'offre.
 	measure 'Amplitude (pts)' =
@@ -27,55 +27,55 @@ table Mesures
 			RETURN IF ( NOT ISBLANK ( _max ), ( _max - _min ) * 100 )
 		formatString: 0.0
 		displayFolder: 01 Intentions de vote
-		lineageTag: d0708095-17c3-4dec-bca2-7fae90aae51e
+		lineageTag: 7f03e35c-99db-4803-ba48-1b0db63a1632
 
 	/// Score le plus élevé observé, tous candidats et toutes hypothèses sélectionnées confondus.
 	measure 'Meilleur score mesuré (%)' = DIVIDE ( MAXX ( ALLSELECTED ( Intentions ), Intentions[Score] ), 100 )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 01 Intentions de vote
-		lineageTag: 4c31ec80-8933-4125-8141-c391b513e896
+		lineageTag: 5ca0c900-aa9b-475a-9284-68e288e8a11f
 
 	/// Demi-intervalle de confiance à 95 % publié par Ipsos, en points.
 	measure 'Marge d’erreur (pts)' = AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( AVERAGE ( Intentions[Marge] ) ) )
 		formatString: 0.0
 		displayFolder: 02 Précision statistique
-		lineageTag: e7bf7b7f-1bed-43b6-bc06-deaa6449b471
+		lineageTag: 79d2a3b1-0170-49ea-b9ec-67fb6db28e73
 
 	/// Borne inférieure de l'intervalle de confiance à 95 %.
 	measure 'Borne basse (%)' = IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] - DIVIDE ( [Marge d’erreur (pts)], 100 ) )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 02 Précision statistique
-		lineageTag: 898c03f7-4b9b-41e6-a23c-50f0778c9099
+		lineageTag: 3e250fc7-9e0e-4e07-887e-77b999594d52
 
 	/// Borne supérieure de l'intervalle de confiance à 95 %.
 	measure 'Borne haute (%)' = IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] + DIVIDE ( [Marge d’erreur (pts)], 100 ) )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 02 Précision statistique
-		lineageTag: c2442597-c774-497a-a885-6e3c44192b7e
+		lineageTag: a56dc142-71e4-4302-983c-23d105024d13
 
 	/// Nombre de personnes ayant exprimé une intention de vote.
-	measure 'Base exprimés' = AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base] ) ) )
+	measure 'Base moyenne' = AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base exprimée] ) ) )
 		formatString: #,0
 		displayFolder: 02 Précision statistique
-		lineageTag: 6e05e675-119c-4648-a9e9-2a7da118b550
+		lineageTag: c4247f88-5d51-4de3-80ec-8c38cb034759
 
 	/// Part des personnes certaines d'aller voter n'ayant exprimé aucune intention.
-	measure 'Sans intention exprimée (%)' = DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[SansReponse] ) ) ), 100 )
-		formatString: 0.0%
+	measure 'Sans intention exprimée (%)' = DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Sans réponse (%)] ) ) ), 100 )
+		formatString: 0.0 %
 		displayFolder: 02 Précision statistique
-		lineageTag: eaf7a39a-e45d-4365-9bee-c818216c0aaf
+		lineageTag: b9954d63-2fd5-4668-b727-38789e9a72ea
 
 	/// Nombre d'hypothèses de premier tour retenues dans le contexte.
 	measure 'Nb hypothèses' = DISTINCTCOUNT ( Hypotheses[Code] )
 		formatString: 0
 		displayFolder: 03 Cadrage
-		lineageTag: 19aefc9e-e19f-47f5-95e3-27b0ecfcb06b
+		lineageTag: fe7dd88c-b8d3-41f6-90ca-4e188c8f9bbb
 
 	/// Nombre de personnalités présentes dans les hypothèses sélectionnées.
 	measure 'Nb candidats testés' = DISTINCTCOUNT ( Intentions[Candidat] )
 		formatString: 0
 		displayFolder: 03 Cadrage
-		lineageTag: 89f9b028-bfbc-43a8-9aee-a867814eec1a
+		lineageTag: 273faad9-7ca0-4d96-8246-d0a51babb71d
 
 	/// Rang du candidat dans le contexte, du score le plus élevé au plus faible.
 	measure 'Rang' =
@@ -83,64 +83,64 @@ table Mesures
 			    RANKX ( ALL ( Candidats[Candidat] ), [Score (%)],, DESC, DENSE ) )
 		formatString: 0
 		displayFolder: 03 Cadrage
-		lineageTag: becc7cc8-0503-48d0-ad21-8bd11453182d
+		lineageTag: b8b8ed99-cc8f-4be4-821b-32b7a39df4a9
 
 	/// Score du candidat arrivé en tête.
 	measure 'Score du 1er (%)' =
 			VAR _t = ADDCOLUMNS ( ALLSELECTED ( Candidats[Candidat] ), "@s", [Score (%)] )
 			RETURN MAXX ( _t, [@s] )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 04 Écarts
-		lineageTag: f66a09f8-4111-4628-bf0b-7596ee0b451b
+		lineageTag: ca0daded-0e58-4858-8a77-ed0c31d3e887
 
 	/// Meilleur score hors candidat de tête.
 	measure 'Score du 2e (%)' =
 			VAR _t = ADDCOLUMNS ( ALLSELECTED ( Candidats[Candidat] ), "@s", [Score (%)] )
 			VAR _top = MAXX ( _t, [@s] )
 			RETURN MAXX ( FILTER ( _t, [@s] < _top ), [@s] )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 04 Écarts
-		lineageTag: 829f9f66-0035-4455-a991-9c3100b22d96
+		lineageTag: 873f248b-d0fc-4699-a9fc-1093aa4f4fd9
 
 	/// Avance du candidat de tête sur son premier poursuivant, en points.
 	measure 'Écart 1er / 2e (pts)' = ( [Score du 1er (%)] - [Score du 2e (%)] ) * 100
 		formatString: 0.0
 		displayFolder: 04 Écarts
-		lineageTag: 82e8569e-fa0c-4cfa-ad33-c908e6633117
+		lineageTag: c803b34c-22b4-440b-bc91-302508b9d6c7
 
 	/// Retard du candidat sur celui arrivé en tête, en points.
 	measure 'Écart au 1er (pts)' = IF ( NOT ISBLANK ( [Score (%)] ), ( [Score (%)] - [Score du 1er (%)] ) * 100 )
 		formatString: 0.0
 		displayFolder: 04 Écarts
-		lineageTag: c2b7554d-5a4b-4896-85e1-8d492b96fa8d
+		lineageTag: a8303404-14fc-4989-8fd2-7da4c198ef5c
 
 	/// Total des candidats d'extrême droite présents dans l'hypothèse.
 	measure 'Total extrême droite (%)' = CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Bloc] = "Extrême droite" )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 05 Blocs politiques
-		lineageTag: 05e1e1da-edb3-42fd-8493-d6f7a4da7f7c
+		lineageTag: 6f7d43ca-6d98-4a6d-9ddf-96f57f776541
 
 	/// Total des candidats de gauche et écologistes.
 	measure 'Total gauche (%)' =
 			CALCULATE ( [Score (%)], ALL ( Candidats ),
 			    Candidats[Bloc] IN { "Gauche radicale", "Gauche et écologistes" } )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 05 Blocs politiques
-		lineageTag: 63e96c02-3727-4d19-ac5f-3f2e6a3c792f
+		lineageTag: 24874a8c-0ba9-4146-a9e5-0dfa9c8dd201
 
 	/// Total du centre et de la droite républicaine.
 	measure 'Total centre et droite (%)' =
 			CALCULATE ( [Score (%)], ALL ( Candidats ),
 			    Candidats[Bloc] IN { "Centre", "Droite" } )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 05 Blocs politiques
-		lineageTag: 8b4f950c-439b-41da-b7e5-9b35d3a1372e
+		lineageTag: 89de7122-67bf-4b26-9a64-9d8fe10ae66b
 
 	/// Part du candidat dans le total de son bloc.
 	measure 'Poids dans le bloc (%)' = DIVIDE ( [Score (%)], CALCULATE ( [Score (%)], ALLEXCEPT ( Candidats, Candidats[Bloc] ) ) )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 05 Blocs politiques
-		lineageTag: 433c1c49-a4c4-49c0-b434-f496c8955b28
+		lineageTag: b6610d56-7d32-4ef6-8d7d-f159ac25d16d
 
 	/// Avance la plus faible du candidat de tête sur son poursuivant, toutes hypothèses confondues.
 	measure 'Écart minimal 1er / 2e (pts)' =
@@ -149,7 +149,7 @@ table Mesures
 			RETURN MINX ( _t, [@e] )
 		formatString: 0.0
 		displayFolder: 04 Écarts
-		lineageTag: 000fe089-0a29-46b0-bc0c-de3aea8cbf0a
+		lineageTag: ebce5c40-a061-42a9-81cd-e61792e0b04f
 
 	/// Gain ou perte du candidat lorsque l'offre passe de quatre à trois grands candidats.
 	measure 'Effet de l’offre resserrée (pts)' =
@@ -161,28 +161,28 @@ table Mesures
 			    ( _trois - _quatre ) * 100 )
 		formatString: +0.0;-0.0;0.0
 		displayFolder: 04 Écarts
-		lineageTag: f54de32f-ca5e-4021-b88a-9ff1d5a7c27b
+		lineageTag: 73f32255-7c32-4b53-8ab8-1e2b1fdc2723
 
 	/// Nombre d'hypothèses dans lesquelles le candidat arrive en première position.
 	measure 'Hypothèses en tête' = COUNTROWS ( FILTER ( VALUES ( Hypotheses[Code] ), CALCULATE ( [Rang] ) = 1 ) ) + 0
 		formatString: 0
 		displayFolder: 03 Cadrage
-		lineageTag: 9e7becf0-426b-4ef7-a218-9b24f7ce0ee3
+		lineageTag: 226b023a-0068-4ee4-b13b-73803d3bf283
 
 	/// Le candidat retenu, ou celui arrivé en tête si aucune sélection n'est faite.
 	measure 'Candidat de référence' =
 			IF ( HASONEVALUE ( Candidats[Candidat] ), SELECTEDVALUE ( Candidats[Candidat] ),
 			    "Jordan Bardella" )
 		displayFolder: 08 Page profil
-		lineageTag: 4c85da59-20b9-4eb7-90ac-98a2b0a842c0
+		lineageTag: 80cd8073-32ac-4de8-a124-8f7383e4e19a
 
 	/// Score du candidat de référence.
 	measure 'Profil · score (%)' =
 			VAR _ref = [Candidat de référence]
 			RETURN CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 08 Page profil
-		lineageTag: 57560801-b9ab-4ab3-b8f5-c5a0512b2ff8
+		lineageTag: f06aae27-ad08-4bd0-a879-0b062faf7e43
 
 	/// Amplitude du candidat de référence.
 	measure 'Profil · amplitude (pts)' =
@@ -190,7 +190,7 @@ table Mesures
 			RETURN CALCULATE ( [Amplitude (pts)], ALL ( Candidats ), Candidats[Candidat] = _ref )
 		formatString: 0.0
 		displayFolder: 08 Page profil
-		lineageTag: 4a6e7130-b7cd-4fa4-9d4d-d6a111f0f47c
+		lineageTag: b8e6c93c-4c8c-4fd4-b3d0-667a9291cce8
 
 	/// Premières places du candidat de référence.
 	measure 'Profil · premières places' =
@@ -198,7 +198,7 @@ table Mesures
 			RETURN CALCULATE ( [Hypothèses en tête], ALL ( Candidats ), Candidats[Candidat] = _ref )
 		formatString: 0
 		displayFolder: 08 Page profil
-		lineageTag: 0ce7d32a-2514-4abd-b0f6-68a8651227f6
+		lineageTag: c2e21549-cfc6-4337-9f7d-8df8233b71d2
 
 	/// Distance au candidat de tête, en points.
 	measure 'Profil · écart au 1er (pts)' =
@@ -206,23 +206,23 @@ table Mesures
 			RETURN CALCULATE ( [Écart au 1er (pts)], ALL ( Candidats ), Candidats[Candidat] = _ref )
 		formatString: 0.0
 		displayFolder: 08 Page profil
-		lineageTag: 2df4b036-c801-41f3-9542-bdf972d2ad35
+		lineageTag: 9ede6748-0292-4540-8489-9fc9ffadc997
 
 	/// Borne inférieure pour le candidat de référence.
 	measure 'Profil · borne basse (%)' =
 			VAR _ref = [Candidat de référence]
 			RETURN CALCULATE ( [Borne basse (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 08 Page profil
-		lineageTag: 22b239cf-5ede-4770-b16b-b23004a2ff06
+		lineageTag: 33b54ea9-3b5f-471a-9fe9-d5942173c561
 
 	/// Borne supérieure pour le candidat de référence.
 	measure 'Profil · borne haute (%)' =
 			VAR _ref = [Candidat de référence]
 			RETURN CALCULATE ( [Borne haute (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 08 Page profil
-		lineageTag: cfef6a4d-632c-45cc-b671-ba1b632da138
+		lineageTag: d45c6af6-3395-4421-83c7-e72870a4e8e9
 
 	/// Écart entre le score de l'hypothèse et la moyenne du candidat : montre où il sur-performe et où il décroche, y compris pour le candidat de tête.
 	measure 'Profil · écart à sa moyenne (pts)' =
@@ -233,7 +233,7 @@ table Mesures
 			RETURN IF ( NOT ISBLANK ( _sc ), ( _sc - _moy ) * 100 )
 		formatString: +0.0;-0.0;0.0
 		displayFolder: 08 Page profil
-		lineageTag: 370a3d9a-0ee0-4715-a357-d30a10f81f51
+		lineageTag: 7fd07b0f-d986-4014-a654-eb63d2290d35
 
 	/// Couleur de parti du candidat de référence.
 	measure 'Profil · couleur' =
@@ -241,48 +241,48 @@ table Mesures
 			RETURN CALCULATE ( SELECTEDVALUE ( Candidats[Couleur] ), ALL ( Candidats ),
 			    Candidats[Candidat] = _ref )
 		displayFolder: 08 Page profil
-		lineageTag: 8dd83ccc-4490-489b-9b1d-fd008cda46c1
+		lineageTag: 6346f611-89f8-49fa-9365-97785c9840c7
 
 	/// Code couleur du parti. Se branche sur « Format par > Valeur de champ » pour que chaque marque prenne la couleur de sa formation, quel que soit l'ordre de tri du visuel.
 	measure 'Couleur du candidat' = SELECTEDVALUE ( Candidats[Couleur], "#16324F" )
 		displayFolder: 07 Mise en forme
-		lineageTag: 5489c387-a3cb-4749-a3e5-6ec9aa507f5e
+		lineageTag: 0e912bb7-cc86-4709-92c0-20ced144e630
 
 	/// Score restreint aux personnalités dépassant 5 % dans au moins une hypothèse : allège les visuels de flux, où treize séries deviennent illisibles.
 	measure 'Score au classement (%)' =
 			VAR _maxCandidat = CALCULATE ( [Score max (%)], ALL ( Hypotheses ) )
 			RETURN IF ( _maxCandidat >= 0.05, [Score (%)] )
-		formatString: 0.0%
+		formatString: 0.0 %
 		displayFolder: 01 Intentions de vote
-		lineageTag: 9b011c8c-ad1e-44c9-bbcd-4335d4c1b7c1
+		lineageTag: cc4939a9-ba3f-4dc7-805f-d59a2792dc93
 
 	/// Code couleur du bloc politique, pour les visuels agrégés par bloc.
 	measure 'Couleur du bloc' = SELECTEDVALUE ( Candidats[CouleurBloc], "#16324F" )
 		displayFolder: 07 Mise en forme
-		lineageTag: 9a519672-e6d6-4b8d-98fb-3877d55c6962
+		lineageTag: 6de10db5-6985-4293-a56e-b2168c5dd456
 
 	/// Rang du candidat dans l'hypothèse, restreint aux personnalités dépassant 5 % : sert d'axe au graphique de rangs.
 	measure 'Rang au classement' = IF ( NOT ISBLANK ( [Score au classement (%)] ), [Rang] )
 		formatString: 0
 		displayFolder: 03 Cadrage
-		lineageTag: e20cb508-2c72-4d3e-8cf7-6a3892d3e70d
+		lineageTag: 54d8911e-273e-4e9f-956d-846d28641510
 
 	/// Titre dynamique reprenant l'intitulé Ipsos.
 	measure 'Hypothèse sélectionnée' =
-			SELECTEDVALUE ( Hypotheses[Intitule],
+			SELECTEDVALUE ( Hypotheses[Intitulé],
 			    "Moyenne des " & [Nb hypothèses] & " hypothèses testées" )
 		displayFolder: 06 Titres dynamiques
-		lineageTag: ccc0d520-01a6-4bf5-a30f-0a68bd68a457
+		lineageTag: 34c323d0-ed76-4f8f-8a5b-af43bf5c9583
 
 	/// Titre dynamique de la page profil.
 	measure 'Candidat sélectionné' = SELECTEDVALUE ( Candidats[Candidat], "Ensemble des candidats testés" )
 		displayFolder: 06 Titres dynamiques
-		lineageTag: 5c11da41-32d8-419a-9032-484bd4a01a74
+		lineageTag: 95de3dac-07a6-4cfb-b4d6-02762e34a932
 
 	/// Note de lecture affichée sous les visuels.
 	measure 'Note de lecture' =
 			VAR _n = [Nb hypothèses]
-			VAR _base = FORMAT ( [Base exprimés], "#,0", "fr-FR" )
+			VAR _base = FORMAT ( [Base moyenne], "#,0", "fr-FR" )
 			VAR _nsp = FORMAT ( [Sans intention exprimée (%)] * 100, "0", "fr-FR" )
 			RETURN
 			    IF ( _n = 1,
@@ -290,19 +290,19 @@ table Mesures
 			            & " % des certains d’aller voter n’ont exprimé aucune intention",
 			        _n & " hypothèses agrégées, base moyenne de " & _base & " personnes exprimées" )
 		displayFolder: 06 Titres dynamiques
-		lineageTag: b4048d3c-4435-4e65-be59-d286cb1134e2
+		lineageTag: 0fd16cf8-7a3f-466a-b45e-7eac8ebd4b77
 
 	/// Avance du premier, formatée pour une carte.
 	measure 'Étiquette avance' =
 			VAR _e = [Écart 1er / 2e (pts)]
 			RETURN IF ( ISBLANK ( _e ), "n. d.", "+" & FORMAT ( _e, "0.0", "fr-FR" ) )
 		displayFolder: 06 Titres dynamiques
-		lineageTag: 98425ca4-a00f-4de0-9eb1-4c1d788d7229
+		lineageTag: 18b91d0c-ffce-42a2-b58a-5c2fabcfe057
 
 	column Filigrane
 		dataType: string
 		isHidden
-		lineageTag: dd7df91e-f89d-405f-bfec-76c472446c58
+		lineageTag: 36298fd5-d2f3-4fdc-9405-3fe74629c5eb
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Filigrane]

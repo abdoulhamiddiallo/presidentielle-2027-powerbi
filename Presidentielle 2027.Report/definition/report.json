@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "SondageIpsos2027",
+      "name": "SondageIpsos2027.json",
       "reportVersionAtImport": {
         "visual": "2.11.0",
         "report": "3.4.0",
@@ -65,7 +65,7 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "SondageIpsos2027",
+          "name": "SondageIpsos2027.json",
           "path": "SondageIpsos2027.json",
           "type": "CustomTheme"
         }

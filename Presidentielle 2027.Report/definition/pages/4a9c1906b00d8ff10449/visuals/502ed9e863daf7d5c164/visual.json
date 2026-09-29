@@ -6,7 +6,7 @@
     "y": 96,
     "z": 30,
     "width": 596,
-    "height": 300,
+    "height": 270,
     "tabOrder": 30
   },
   "visual": {
@@ -60,11 +60,11 @@
                       "Entity": "Candidats"
                     }
                   },
-                  "Property": "Candidat"
+                  "Property": "Nom court"
                 }
               },
-              "queryRef": "Candidats.Candidat",
-              "nativeQueryRef": "Candidat"
+              "queryRef": "Candidats.Nom court",
+              "nativeQueryRef": "Nom court"
             }
           ]
         }
@@ -310,37 +310,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Mesures"
-                        }
-                      },
-                      "Property": "Couleur du candidat"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ]
           }
         }
       ]

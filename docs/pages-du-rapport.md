@@ -26,8 +26,8 @@ Identifiant interne `e243ed2e3ef9fb534b3a`, 12 visuels.
 | 716 ; 96 | 254 x 118 | Carte | TOTAL EXTRÊME DROITE | Trois candidats cumulés |
 | 986 ; 96 | 254 x 118 | Carte | AVANCE MINIMALE SUR LE 2E | En points, hypothèse la plus serrée |
 | 40 ; 230 | 640 x 454 | Barres groupées | Le classement moyen des treize personnalités testées | En % des suffrages exprimés, couleur du parti, J. Bardella et M. Le Pen ne so... |
-| 696 ; 230 | 544 x 202 | Barres groupées | Le bloc d'extrême droite pèse près de 38 % | Total de chaque bloc, du plus lourd au plus léger |
-| 696 ; 442 | 544 x 242 | Zone de texte | Ce qu'il faut retenir |  |
+| 696 ; 230 | 544 x 214 | Barres groupées | Le bloc d'extrême droite pèse près de 38 % | Total de chaque bloc, du plus lourd au plus léger |
+| 696 ; 454 | 544 x 230 | Zone de texte | Ce qu'il faut retenir |  |
 | 40 ; 690 | 620 x 30 | Zone de texte | *01 Constat ▸ 02 Stabilité ▸ 03 Offre ▸ 04 Profils ▸ 05 Conclusions ...* |  |
 | 680 ; 690 | 560 x 30 | Zone de texte | *Ipsos bva · CESI pour Le Parisien, terrain des 27 et 28 mai 2026. R...* |  |
 
@@ -55,10 +55,10 @@ Identifiant interne `4a9c1906b00d8ff10449`, 9 visuels.
 | 0 ; 0 | 1280 x 84 | Zone de texte | *(bloc de texte vide, fond de bandeau)* |  |
 | 40 ; 10 | 860 x 66 | Zone de texte | *Ce qui fait varier les scores, c'est l'offre, pas l'électorat Retir...* |  |
 | 880 ; 12 | 360 x 62 | Zone de texte | *03 · L'EFFET DE L'OFFRE Ipsos bva · CESI · Le Parisien* |  |
-| 40 ; 96 | 596 x 300 | Courbes | Une candidature de moins, et le bloc central se redistribue | Score en configuration à quatre grands candidats, puis à trois, personnalités... |
-| 652 ; 96 | 588 x 300 | Nuage de points | Un score élevé n'est pas un score solide | Score moyen en abscisse, amplitude entre hypothèses en ordonnée |
-| 40 ; 412 | 596 x 272 | Colonnes empilées | Attal et Philippe captent l'essentiel du report | Écart de score entre les hypothèses à trois grands candidats et celles à quat... |
-| 652 ; 412 | 588 x 272 | Tableau | Niveau, dispersion et premières places | Treize personnalités, classées par score moyen décroissant |
+| 40 ; 96 | 596 x 270 | Courbes | Une candidature de moins, et le bloc central se redistribue | Score en configuration à quatre grands candidats, puis à trois, personnalités... |
+| 652 ; 96 | 588 x 270 | Nuage de points | Un score élevé n'est pas un score solide | Score moyen en abscisse, amplitude entre hypothèses en ordonnée |
+| 40 ; 376 | 596 x 308 | Colonnes groupées | Attal et Philippe captent l'essentiel du report | Écart de score entre les hypothèses à trois grands candidats et celles à quat... |
+| 652 ; 376 | 588 x 308 | Tableau | Niveau, dispersion et premières places | Treize personnalités, classées par score moyen décroissant |
 | 40 ; 690 | 620 x 30 | Zone de texte | *01 Constat ▸ 02 Stabilité ▸ 03 Offre ▸ 04 Profils ▸ 05 Conclusions ...* |  |
 | 680 ; 690 | 560 x 30 | Zone de texte | *Ipsos bva · CESI pour Le Parisien, terrain des 27 et 28 mai 2026. C...* |  |
 
@@ -109,7 +109,7 @@ Identifiant interne `6ace756a11c1c4504a6b`, 11 visuels.
 | 880 ; 12 | 360 x 62 | Zone de texte | *06 · LA MÉTHODE Ipsos bva · CESI · Le Parisien* |  |
 | 40 ; 96 | 380 x 290 | Zone de texte | Fiche méthodologique | Norme ISO 20252 : études de marché, sociales et d'opinion |
 | 432 ; 96 | 400 x 290 | Tableau | Base et non-réponse | Personnes exprimées et part sans intention déclarée |
-| 844 ; 96 | 396 x 340 | Barres groupées | La marge croît avec le score | Demi-intervalle de confiance à 95 %, en points |
+| 844 ; 96 | 396 x 340 | Nuage de points | La marge croît avec le score | Demi-intervalle de confiance à 95 %, en points |
 | 40 ; 396 | 380 x 288 | Zone de texte | Précautions de lecture |  |
 | 432 ; 396 | 400 x 288 | Tableau | Ce que teste chaque hypothèse | Configuration d'offre et candidats pivots |
 | 844 ; 446 | 396 x 238 | Zone de texte | Comment lire un intervalle |  |

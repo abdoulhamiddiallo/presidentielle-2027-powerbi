@@ -57,8 +57,8 @@ page d'info-bulle.
 Quatre indicateurs de cadrage (candidat en tête, meilleur score mesuré, total
 extrême droite, avance minimale sur le deuxième), le classement moyen des treize
 personnalités testées en barres horizontales aux couleurs des partis, le poids
-des cinq blocs politiques classés du plus lourd au plus léger, et un bloc de
-quatre points de lecture.
+des cinq blocs politiques classés du plus lourd au plus léger, et trois points de
+lecture.
 
 ### 02 · La stabilité du classement
 
@@ -102,8 +102,8 @@ tête hypothèse par hypothèse.
 *Une enquête par quotas, à lire avec ses marges d'erreur.*
 
 Fiche technique complète, base et non-réponse par hypothèse, contenu de chaque
-hypothèse, explication de l'intervalle de confiance et graphique de la marge
-d'erreur en fonction du score.
+hypothèse, explication de l'intervalle de confiance et nuage de points de la
+marge d'erreur en fonction du score.
 
 ### Info-bulle · profil candidat
 
@@ -136,8 +136,8 @@ Candidats (13 lignes)          Hypotheses (8 lignes)
 
 | Table | Rôle | Lignes | Colonnes |
 |---|---|---|---|
-| `Candidats` | Référentiel des personnalités testées | 13 | `Candidat`, `NomCourt`, `Parti`, `Bloc`, `OrdreBloc`, `Ordre`, `Couleur`, `CouleurBloc` |
-| `Hypotheses` | Les huit configurations d'offre | 8 | `Code`, `Hypothese`, `Intitule`, `Base`, `SansReponse`, `NbCandidats`, `FinalisteRN`, `CandidatGauche`, `Configuration`, `OrdreConfig`, `Ordre` |
+| `Candidats` | Référentiel des personnalités testées | 13 | `Candidat`, `Nom court`, `Parti`, `Bloc`, `OrdreBloc`, `Ordre`, `Couleur`, `CouleurBloc` |
+| `Hypotheses` | Les huit configurations d'offre | 8 | `Code`, `Hypothèse`, `Intitulé`, `Base exprimée`, `Sans réponse (%)`, `Nb candidats`, `Finaliste RN`, `Candidat de gauche`, `Configuration`, `OrdreConfig`, `Ordre` |
 | `Intentions` | Table de faits, un score par candidat et par hypothèse | 84 | `Code`, `Candidat`, `Score`, `Marge` |
 | `Mesures` | Conteneur de mesures, aucune donnée | 0 | aucune |
 
@@ -163,7 +163,7 @@ Quarante et une mesures, rangées en huit dossiers d'affichage.
 | Dossier | Contenu |
 |---|---|
 | 01 Intentions de vote | `Score (%)`, `Score max (%)`, `Score min (%)`, `Amplitude (pts)`, `Meilleur score mesuré (%)`, `Score au classement (%)` |
-| 02 Précision statistique | `Marge d’erreur (pts)`, `Borne basse (%)`, `Borne haute (%)`, `Base exprimés`, `Sans intention exprimée (%)` |
+| 02 Précision statistique | `Marge d’erreur (pts)`, `Borne basse (%)`, `Borne haute (%)`, `Base moyenne`, `Sans intention exprimée (%)` |
 | 03 Cadrage | `Nb hypothèses`, `Nb candidats testés`, `Rang`, `Rang au classement`, `Hypothèses en tête` |
 | 04 Écarts | `Score du 1er (%)`, `Score du 2e (%)`, `Écart 1er / 2e (pts)`, `Écart au 1er (pts)`, `Écart minimal 1er / 2e (pts)`, `Effet de l’offre resserrée (pts)` |
 | 05 Blocs politiques | `Total extrême droite (%)`, `Total gauche (%)`, `Total centre et droite (%)`, `Poids dans le bloc (%)` |

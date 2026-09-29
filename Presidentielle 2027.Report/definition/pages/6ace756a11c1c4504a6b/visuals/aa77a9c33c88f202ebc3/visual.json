@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "74604446bae59a2a7175",
+  "name": "aa77a9c33c88f202ebc3",
   "position": {
-    "x": 288,
-    "y": 230,
-    "z": 40,
-    "width": 476,
-    "height": 454,
-    "tabOrder": 40
+    "x": 844,
+    "y": 96,
+    "z": 24,
+    "width": 396,
+    "height": 340,
+    "tabOrder": 24
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "scatterChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,15 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Hypotheses"
+                      "Entity": "Candidats"
                     }
                   },
-                  "Property": "Hypothese"
+                  "Property": "Candidat"
                 }
               },
-              "queryRef": "Hypotheses.Hypothese",
-              "nativeQueryRef": "Hypothese",
+              "queryRef": "Candidats.Candidat",
+              "nativeQueryRef": "Candidat",
               "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mesures"
+                    }
+                  },
+                  "Property": "Score (%)"
+                }
+              },
+              "queryRef": "Mesures.Score (%)",
+              "nativeQueryRef": "Score (%)"
             }
           ]
         },
@@ -42,31 +60,14 @@
                       "Entity": "Mesures"
                     }
                   },
-                  "Property": "Profil · score (%)"
+                  "Property": "Marge d’erreur (pts)"
                 }
               },
-              "queryRef": "Mesures.Profil · score (%)",
-              "nativeQueryRef": "Profil · score (%)"
+              "queryRef": "Mesures.Marge d’erreur (pts)",
+              "nativeQueryRef": "Marge d’erreur (pts)"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Hypotheses"
-                  }
-                },
-                "Property": "Ordre"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -83,80 +84,14 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
             "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0E1E33'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI Semibold'"
-                }
-              }
-            },
-            "concatenateLabels": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "maxMarginFactor": {
-              "expr": {
-                "Literal": {
-                  "Value": "44D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -189,6 +124,129 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EDEAE2'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineThickness": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "gridlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "axisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Score moyen (%)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8A94A3'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "concatenateLabels": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EDEAE2'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineThickness": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "gridlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "axisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Marge (points)'"
                 }
               }
             }
@@ -247,7 +305,7 @@
           }
         }
       ],
-      "labels": [
+      "categoryLabels": [
         {
           "properties": {
             "show": {
@@ -260,7 +318,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "8.5D"
                 }
               }
             },
@@ -278,42 +336,33 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Segoe UI Semibold'"
+                  "Value": "'Segoe UI'"
                 }
               }
-            },
-            "labelDisplayUnits": {
+            }
+          }
+        }
+      ],
+      "bubbles": [
+        {
+          "properties": {
+            "bubbleSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "5D"
                 }
               }
-            },
-            "labelPrecision": {
+            }
+          }
+        }
+      ],
+      "fillPoint": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "backgroundTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
-                }
-              }
-            },
-            "enableBackground": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "labelPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'OutsideEnd'"
+                  "Value": "true"
                 }
               }
             }
@@ -333,7 +382,7 @@
                           "Entity": "Mesures"
                         }
                       },
-                      "Property": "Profil · couleur"
+                      "Property": "Couleur du candidat"
                     }
                   }
                 }
@@ -348,26 +397,6 @@
                 }
               }
             ]
-          }
-        }
-      ],
-      "tooltip": [
-        {
-          "properties": {
-            "type": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Canvas'"
-                }
-              }
-            },
-            "section": {
-              "expr": {
-                "Literal": {
-                  "Value": "'infobulle2027candidat'"
-                }
-              }
-            }
           }
         }
       ]
@@ -527,7 +556,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Son niveau, hypothèse par hypothèse'"
+                  "Value": "'La marge croît avec le score'"
                 }
               }
             },
@@ -597,7 +626,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'En % des suffrages exprimés'"
+                  "Value": "'Demi-intervalle de confiance à 95 %, en points'"
                 }
               }
             },

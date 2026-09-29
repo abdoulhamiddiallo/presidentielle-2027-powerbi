@@ -20,7 +20,7 @@ Score (%) =
 DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Score max (%)`
 
@@ -31,7 +31,7 @@ Score max (%) =
 DIVIDE ( MAXX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Score min (%)`
 
@@ -42,11 +42,12 @@ Score min (%) =
 DIVIDE ( MINX ( VALUES ( Hypotheses[Code] ), CALCULATE ( SUM ( Intentions[Score] ) ) ), 100 )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Amplitude (pts)`
 
-Écart entre le meilleur et le moins bon score, en points : sensibilité à la configuration d'offre.
+Écart entre le meilleur et le moins bon score, en points : sensibilité à la
+configuration d'offre.
 
 ```dax
 Amplitude (pts) =
@@ -59,14 +60,15 @@ Format d'affichage : `0.0`
 
 ### `Meilleur score mesuré (%)`
 
-Score le plus élevé observé, tous candidats et toutes hypothèses sélectionnées confondus.
+Score le plus élevé observé, tous candidats et toutes hypothèses sélectionnées
+confondus.
 
 ```dax
 Meilleur score mesuré (%) =
 DIVIDE ( MAXX ( ALLSELECTED ( Intentions ), Intentions[Score] ), 100 )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Score au classement (%)`
 
@@ -79,7 +81,7 @@ VAR _maxCandidat = CALCULATE ( [Score max (%)], ALL ( Hypotheses ) )
 RETURN IF ( _maxCandidat >= 0.05, [Score (%)] )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ## 02 Précision statistique
 
@@ -103,7 +105,7 @@ Borne basse (%) =
 IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] - DIVIDE ( [Marge d’erreur (pts)], 100 ) )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Borne haute (%)`
 
@@ -114,15 +116,15 @@ Borne haute (%) =
 IF ( NOT ISBLANK ( [Score (%)] ), [Score (%)] + DIVIDE ( [Marge d’erreur (pts)], 100 ) )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
-### `Base exprimés`
+### `Base moyenne`
 
 Nombre de personnes ayant exprimé une intention de vote.
 
 ```dax
-Base exprimés =
-AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base] ) ) )
+Base moyenne =
+AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Base exprimée] ) ) )
 ```
 
 Format d'affichage : `#,0`
@@ -133,11 +135,10 @@ Part des personnes certaines d'aller voter n'ayant exprimé aucune intention.
 
 ```dax
 Sans intention exprimée (%) =
-DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX (
-Hypotheses[SansReponse] ) ) ), 100 )
+DIVIDE ( AVERAGEX ( VALUES ( Hypotheses[Code] ), CALCULATE ( MAX ( Hypotheses[Sans réponse (%)] ) ) ), 100 )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ## 03 Cadrage
 
@@ -210,7 +211,7 @@ VAR _t = ADDCOLUMNS ( ALLSELECTED ( Candidats[Candidat] ), "@s", [Score (%)] )
 RETURN MAXX ( _t, [@s] )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Score du 2e (%)`
 
@@ -223,7 +224,7 @@ VAR _top = MAXX ( _t, [@s] )
 RETURN MAXX ( FILTER ( _t, [@s] < _top ), [@s] )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Écart 1er / 2e (pts)`
 
@@ -249,7 +250,8 @@ Format d'affichage : `0.0`
 
 ### `Écart minimal 1er / 2e (pts)`
 
-Avance la plus faible du candidat de tête sur son poursuivant, toutes hypothèses confondues.
+Avance la plus faible du candidat de tête sur son poursuivant, toutes
+hypothèses confondues.
 
 ```dax
 Écart minimal 1er / 2e (pts) =
@@ -262,7 +264,8 @@ Format d'affichage : `0.0`
 
 ### `Effet de l’offre resserrée (pts)`
 
-Gain ou perte du candidat lorsque l'offre passe de quatre à trois grands candidats.
+Gain ou perte du candidat lorsque l'offre passe de quatre à trois grands
+candidats.
 
 ```dax
 Effet de l’offre resserrée (pts) =
@@ -287,7 +290,7 @@ Total extrême droite (%) =
 CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Bloc] = "Extrême droite" )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Total gauche (%)`
 
@@ -299,7 +302,7 @@ CALCULATE ( [Score (%)], ALL ( Candidats ),
     Candidats[Bloc] IN { "Gauche radicale", "Gauche et écologistes" } )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Total centre et droite (%)`
 
@@ -311,7 +314,7 @@ CALCULATE ( [Score (%)], ALL ( Candidats ),
     Candidats[Bloc] IN { "Centre", "Droite" } )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Poids dans le bloc (%)`
 
@@ -322,7 +325,7 @@ Poids dans le bloc (%) =
 DIVIDE ( [Score (%)], CALCULATE ( [Score (%)], ALLEXCEPT ( Candidats, Candidats[Bloc] ) ) )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ## 06 Titres dynamiques
 
@@ -332,7 +335,7 @@ Titre dynamique reprenant l'intitulé Ipsos.
 
 ```dax
 Hypothèse sélectionnée =
-SELECTEDVALUE ( Hypotheses[Intitule],
+SELECTEDVALUE ( Hypotheses[Intitulé],
     "Moyenne des " & [Nb hypothèses] & " hypothèses testées" )
 ```
 
@@ -352,7 +355,7 @@ Note de lecture affichée sous les visuels.
 ```dax
 Note de lecture =
 VAR _n = [Nb hypothèses]
-VAR _base = FORMAT ( [Base exprimés], "#,0", "fr-FR" )
+VAR _base = FORMAT ( [Base moyenne], "#,0", "fr-FR" )
 VAR _nsp = FORMAT ( [Sans intention exprimée (%)] * 100, "0", "fr-FR" )
 RETURN
     IF ( _n = 1,
@@ -415,7 +418,7 @@ VAR _ref = [Candidat de référence]
 RETURN CALCULATE ( [Score (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Profil · amplitude (pts)`
 
@@ -463,7 +466,7 @@ VAR _ref = [Candidat de référence]
 RETURN CALCULATE ( [Borne basse (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Profil · borne haute (%)`
 
@@ -475,7 +478,7 @@ VAR _ref = [Candidat de référence]
 RETURN CALCULATE ( [Borne haute (%)], ALL ( Candidats ), Candidats[Candidat] = _ref )
 ```
 
-Format d'affichage : `0.0%`
+Format d'affichage : `0.0 %`
 
 ### `Profil · écart à sa moyenne (pts)`
 
